@@ -5,12 +5,20 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.sae201.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.stage.Screen?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<Pane fx:id="scene" prefWidth="${screen.visualBounds.width}" prefHeight="${screen.visualBounds.height}" xmlns:fx="http://javafx.com/fxml">
+    <fx:define>
+        <Screen fx:factory="getPrimary" fx:id="screen"/>
+    </fx:define>
+    <TableView prefHeight="${scene.height}" prefWidth="${scene.width}">
+        <columns>
+            <TableColumn><text>Salut</text></TableColumn>
+            <TableColumn><text>c'est</text></TableColumn>
+            <TableColumn><text>moi</text></TableColumn>
+        </columns>
+    </TableView>
+</Pane>
