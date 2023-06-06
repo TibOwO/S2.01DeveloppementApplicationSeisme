@@ -34,7 +34,6 @@ public class Seisme {
         this.qualiteIntensiteEpicentrale = qualiteIntensiteEpicentrale;
     }
 
-
     public String getId() {
         return id.get();
     }

@@ -8,18 +8,22 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class OuvertureJava2 {
-    private static final String SAMPLE_CSV_FILE_PATH = "/amuhome/r22011072/r202/S2.01DeveloppementApplicationSeisme/src/main/resources/com/example/sae201/SisFrance_seismes_20230604151458.csv";
+
+    static ArrayList<Seisme> lSeismes = new ArrayList<>();
+    private static String sampleCsvFilePath = "/amuhome/r22011072/r202/S2.01DeveloppementApplicationSeisme/src/main/resources/com/example/sae201/SisFrance_seismes_20230604151458.csv";
 
     public static void main(String[] args) throws IOException {
         try (
-                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
+                Reader reader = Files.newBufferedReader(Paths.get(sampleCsvFilePath));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
         ) {
+            Seisme aAjouter = null;
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index
-                String Id = csvRecord.get(0);
+                String id = csvRecord.get(0);
                 String date = csvRecord.get(1);
                 String heure = csvRecord.get(2);
                 String nom = csvRecord.get(3);
@@ -31,12 +35,26 @@ public class OuvertureJava2 {
                 String longitude = csvRecord.get(9);
                 String intensiteEpicentrale = csvRecord.get(10);
                 String qualiteIntensiteEpicentrale = csvRecord.get(11);
+                aAjouter.setId(id);
+                aAjouter.setDate(date);
+                aAjouter.setHeure(heure);
+                aAjouter.setNom(nom);
+                aAjouter.setRegionEpicentrale(regionEpicentrale);
+                aAjouter.setChoc(choc);
+                aAjouter.setxRGF93(xRGF93);
+                aAjouter.setyRGF93(yRGF93);
+                aAjouter.setLatitude(latitude);
+                aAjouter.setLongitude(longitude);
+                aAjouter.setIntensiteEpicentrale(intensiteEpicentrale);
+                aAjouter.setQualiteIntensiteEpicentrale(qualiteIntensiteEpicentrale);
+
+                lSeismes.add(aAjouter);
 
 
 
                 System.out.println("Record No - " + csvRecord.getRecordNumber());
                 System.out.println("---------------");
-                System.out.println("Id : " + Id);
+                System.out.println("Id : " + id);
                 System.out.println("Date : " + date);
                 System.out.println("Heure : " + heure);
                 System.out.println("Nom : " + nom);
@@ -52,7 +70,5 @@ public class OuvertureJava2 {
             }
         }
 
-        // Avec ces valeurs, faire des stats:
-        // Nombre de seisme en fonction de l annee
     }
 }
