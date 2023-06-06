@@ -10,20 +10,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.stage.Screen?>
 
+<?import java.lang.String?>
 <Pane fx:id="scene" prefWidth="${screen.visualBounds.width}" prefHeight="${screen.visualBounds.height}" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.SeismeController">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
     <TableView fx:id="tableau" prefHeight="${scene.height}" prefWidth="${scene.width}">
         <columns>
-            <TableColumn minWidth="100"><text>Identifiant</text></TableColumn>
-            <TableColumn minWidth="150"><text>Date (AAAA/MM/JJ)</text></TableColumn>
-            <TableColumn minWidth="50"><text>Heure</text></TableColumn>
-            <TableColumn minWidth="200"><text>Intensité épicentrale</text></TableColumn>
-            <TableColumn minWidth="250"><text>Qualité intensité épicentrale</text></TableColumn>
-            <TableColumn minWidth="50"><text>Nom</text></TableColumn>
-            <TableColumn minWidth="150"><text>Région épicentrale</text></TableColumn>
-            <TableColumn minWidth="50"><text>Choc</text></TableColumn>
+<!--            <TableColumn minWidth="100"><text>Identifiant</text></&#45;&#45;TableColumn>-->
+<!--            <TableColumn minWidth="150"><text>Date (AAAA/MM/JJ)</text></TableColumn>-->
+<!--            <TableColumn minWidth="50"><text>Heure</text></TableColumn>-->
+<!--            <TableColumn minWidth="200"><text>Intensité épicentrale</text></TableColumn>-->
+<!--            <TableColumn minWidth="250"><text>Qualité intensité épicentrale</text></TableColumn>-->
+<!--            <TableColumn minWidth="50"><text>Nom</text></TableColumn>-->
+<!--            <TableColumn minWidth="150"><text>Région épicentrale</text></TableColumn>-->
+<!--            <TableColumn minWidth="50"><text>Choc</text></TableColumn>-->
         </columns>
     </TableView>
 </Pane>
