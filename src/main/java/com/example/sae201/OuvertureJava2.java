@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class OuvertureJava2 {
-    private static final String SAMPLE_CSV_FILE_PATH = "/amuhome/a22009311/JavaS2.01DeveloppementApplicationSeisme/src/main/resources/SisFrance_seismes_20230605113030.csv";
+    private static final String SAMPLE_CSV_FILE_PATH = "/amuhome/r22011072/r202/S2.01DeveloppementApplicationSeisme/src/main/resources/com/example/sae201/SisFrance_seismes_20230604151458.csv";
 
     public static void main(String[] args) throws IOException {
         try (
@@ -51,5 +51,8 @@ public class OuvertureJava2 {
                 System.out.println("---------------\n\n");
             }
         }
+
+        // Avec ces valeurs, faire des stats:
+        // Nombre de seisme en fonction de l annee
     }
 }
