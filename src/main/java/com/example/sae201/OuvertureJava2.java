@@ -17,6 +17,7 @@ public class OuvertureJava2 {
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
         ) {
+            System.out.println(csvParser.getRecords().size());
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index
                 String Id = csvRecord.get(0);
