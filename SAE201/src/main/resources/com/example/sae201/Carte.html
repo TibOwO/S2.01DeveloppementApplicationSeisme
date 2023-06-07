@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 <script>
     // Création de la carte
-    var map = L.map('mapid').setView([51.505, -0.09], 13);
+    var map = L.map('mapid').setView([46.32, 2.25], 6);
 
     // Ajout du fond de carte
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -25,8 +25,8 @@
     }).addTo(map);
 
     // Ajout d'un marqueur
-    var marker = L.marker([51.5, -0.09]).addTo(map);
-    marker.bindPopup("<b>Hello!</b><br>C'est moi !").openPopup();
+    //var marker = L.marker([51.5, -0.09]).addTo(map);
+    //marker.bindPopup("<b>Hello!</b><br>C'est moi !").openPopup();
 </script>
 </body>
 </html>
