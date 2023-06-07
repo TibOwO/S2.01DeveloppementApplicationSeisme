@@ -4,9 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import java.util.List;
 import java.util.stream.Collectors;
+import static com.example.sae201.OuvertureJava2.lSeismes;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.example.sae201.OuvertureJava2.lSeismes;
 
 public class HelloController {

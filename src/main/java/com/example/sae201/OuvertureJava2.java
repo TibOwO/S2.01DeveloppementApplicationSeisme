@@ -23,7 +23,6 @@ public class OuvertureJava2 {
 
         ) {
             Seisme aAjouter;
-
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index
                 String id = csvRecord.get(0);
