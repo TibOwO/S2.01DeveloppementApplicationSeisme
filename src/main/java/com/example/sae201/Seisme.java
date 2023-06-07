@@ -213,18 +213,18 @@ public class Seisme {
     @Override
     public String toString() {
         return "Seisme{" +
-                "id=" + id +
-                ", date=" + date +
-                ", heure=" + heure +
-                ", nom=" + nom +
-                ", regionEpicentrale=" + regionEpicentrale +
-                ", choc=" + choc +
-                ", xRGF93=" + xRGF93 +
-                ", yRGF93=" + yRGF93 +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", intensiteEpicentrale=" + intensiteEpicentrale +
-                ", qualiteIntensiteEpicentrale=" + qualiteIntensiteEpicentrale +
+                "id=" + id.get() +
+                ", date=" + date.get() +
+                ", heure=" + heure.get() +
+                ", nom=" + nom.get() +
+                ", regionEpicentrale=" + regionEpicentrale.get() +
+                ", choc=" + choc.get() +
+                ", xRGF93=" + xRGF93.get() +
+                ", yRGF93=" + yRGF93.get() +
+                ", latitude=" + latitude.get() +
+                ", longitude=" + longitude.get() +
+                ", intensiteEpicentrale=" + intensiteEpicentrale.get() +
+                ", qualiteIntensiteEpicentrale=" + qualiteIntensiteEpicentrale.get() +
                 '}';
     }
 }

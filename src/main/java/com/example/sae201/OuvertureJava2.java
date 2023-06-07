@@ -17,12 +17,12 @@ public class OuvertureJava2 {
     static List<Seisme> lSeismes = new ArrayList<>();
     private static final String SAMPLE_CSV_FILE_PATH = "/amuhome/r22011072/r202/S2.01DeveloppementApplicationSeisme/src/main/resources/com/example/sae201/SisFrance_seismes_20230604151458.csv";
     private static final String TEMP = "C:\\Users\\Bob\\IdeaProjects\\S2.01DeveloppementApplicationSeisme\\src\\main\\resources\\com\\example\\sae201\\SisFrance_seismes_20230604151458.csv";
-    public static void main(String[] args) throws IOException {
+    public static void main() throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(TEMP));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
         ) {
-            Seisme aAjouter = new Seisme();
+            Seisme aAjouter;
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index
                 String id = csvRecord.get(0);
@@ -64,27 +64,9 @@ public class OuvertureJava2 {
                 System.out.println(e);
             }
              */
-            List<Seisme> test = filtrerParIntensiteEpicentrale(lSeismes, "7");
-            test = filtrerParId(test, "100");
         }
 
     }
 
-    public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder){
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().get().startsWith(aGarder))
-                .collect(Collectors.toList());
 
-        System.out.println(filteredList);
-        return filteredList;
-    }
-
-    public static List<Seisme> filtrerParId(List<Seisme> liste, String aGarder){
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().get().startsWith(aGarder))
-                .collect(Collectors.toList());
-
-        System.out.println(filteredList);
-        return filteredList;
-    }
 }
