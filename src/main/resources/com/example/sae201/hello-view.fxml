@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.chart.BubbleChart?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" >
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
@@ -23,6 +22,7 @@
                 <Button text="Tableau"/>
                 <Button text="Carte"/>
                 <Button text="Statistiques"/>
+                <Button text="Importer un fichier CSV"/>
             </VBox>
         </HBox>
     </left>
