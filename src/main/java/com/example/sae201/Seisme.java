@@ -1,26 +1,26 @@
 package com.example.sae201;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-import java.util.Date;
 
 public class Seisme {
 
-    private SimpleStringProperty id;
-    private SimpleStringProperty date;
-    private SimpleStringProperty heure;
-    private SimpleStringProperty nom;
-    private SimpleStringProperty regionEpicentrale;
-    private SimpleStringProperty choc;
-    private SimpleStringProperty xRGF93;
-    private SimpleStringProperty yRGF93;
-    private SimpleStringProperty latitude;
-    private SimpleStringProperty longitude;
-    private SimpleStringProperty intensiteEpicentrale;
-    private SimpleStringProperty qualiteIntensiteEpicentrale;
+    private StringProperty id = new SimpleStringProperty();
+    private StringProperty date;
+    private StringProperty heure;
+    private StringProperty nom;
+    private StringProperty regionEpicentrale;
+    private StringProperty choc;
+    private StringProperty xRGF93;
+    private StringProperty yRGF93;
+    private StringProperty latitude;
+    private StringProperty longitude;
+    private StringProperty intensiteEpicentrale;
+    private StringProperty qualiteIntensiteEpicentrale;
 
-    public Seisme(SimpleStringProperty id, SimpleStringProperty date, SimpleStringProperty heure, SimpleStringProperty nom, SimpleStringProperty regionEpicentrale, SimpleStringProperty choc, SimpleStringProperty xRGF93, SimpleStringProperty yRGF93, SimpleStringProperty latitude, SimpleStringProperty longitude, SimpleStringProperty intensiteEpicentrale, SimpleStringProperty qualiteIntensiteEpicentrale) {
-        this.id = id;
+    /*public Seisme(SimpleStringProperty id, SimpleStringProperty date, SimpleStringProperty heure, SimpleStringProperty nom, SimpleStringProperty regionEpicentrale, SimpleStringProperty choc, SimpleStringProperty xRGF93, SimpleStringProperty yRGF93, SimpleStringProperty latitude, SimpleStringProperty longitude, SimpleStringProperty intensiteEpicentrale, SimpleStringProperty qualiteIntensiteEpicentrale) {
+        this.id = new SimpleStringProperty(id);
         this.date = date;
         this.heure = heure;
         this.nom = nom;
@@ -32,14 +32,44 @@ public class Seisme {
         this.longitude = longitude;
         this.intensiteEpicentrale = intensiteEpicentrale;
         this.qualiteIntensiteEpicentrale = qualiteIntensiteEpicentrale;
+    }*/
+
+    public Seisme(String id, String date, String heure, String nom, String regionEpicentrale, String choc, String xRGF93, String yRGF93, String latitude, String longitude, String intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
+        this.id = new SimpleStringProperty(id);
+        this.date = new SimpleStringProperty(date);
+        this.heure = new SimpleStringProperty(heure);
+        this.nom = new SimpleStringProperty(nom);
+        this.regionEpicentrale = new SimpleStringProperty(regionEpicentrale);
+        this.choc = new SimpleStringProperty(choc);
+        this.xRGF93 = new SimpleStringProperty(xRGF93);
+        this.yRGF93 = new SimpleStringProperty(yRGF93);
+        this.latitude = new SimpleStringProperty(latitude);
+        this.longitude = new SimpleStringProperty(longitude);
+        this.intensiteEpicentrale = new SimpleStringProperty(intensiteEpicentrale);
+        this.qualiteIntensiteEpicentrale = new SimpleStringProperty(qualiteIntensiteEpicentrale);
     }
 
+    public Seisme() {
+        /*id = new SimpleStringProperty("");
+        //this.id.setValue("");
+        this.date.setValue("");
+        this.heure.setValue("");
+        this.nom.setValue("");
+        this.regionEpicentrale.setValue("");
+        this.choc.setValue("");
+        this.xRGF93.setValue("");
+        this.yRGF93.setValue("");
+        this.latitude.setValue("");
+        this.longitude.setValue("");
+        this.intensiteEpicentrale.setValue("");
+        this.qualiteIntensiteEpicentrale.setValue("");*/
+    }
 
     public String getId() {
         return id.get();
     }
 
-    public SimpleStringProperty idProperty() {
+    public StringProperty idProperty() {
         return id;
     }
 
@@ -51,7 +81,7 @@ public class Seisme {
         return date.get();
     }
 
-    public SimpleStringProperty dateProperty() {
+    public StringProperty dateProperty() {
         return date;
     }
 
@@ -63,7 +93,7 @@ public class Seisme {
         return heure.get();
     }
 
-    public SimpleStringProperty heureProperty() {
+    public StringProperty heureProperty() {
         return heure;
     }
 
@@ -75,7 +105,7 @@ public class Seisme {
         return nom.get();
     }
 
-    public SimpleStringProperty nomProperty() {
+    public StringProperty nomProperty() {
         return nom;
     }
 
@@ -87,7 +117,7 @@ public class Seisme {
         return regionEpicentrale.get();
     }
 
-    public SimpleStringProperty regionEpicentraleProperty() {
+    public StringProperty regionEpicentraleProperty() {
         return regionEpicentrale;
     }
 
@@ -99,7 +129,7 @@ public class Seisme {
         return choc.get();
     }
 
-    public SimpleStringProperty chocProperty() {
+    public StringProperty chocProperty() {
         return choc;
     }
 
@@ -111,7 +141,7 @@ public class Seisme {
         return xRGF93.get();
     }
 
-    public SimpleStringProperty xRGF93Property() {
+    public StringProperty xRGF93Property() {
         return xRGF93;
     }
 
@@ -123,7 +153,7 @@ public class Seisme {
         return yRGF93.get();
     }
 
-    public SimpleStringProperty yRGF93Property() {
+    public StringProperty yRGF93Property() {
         return yRGF93;
     }
 
@@ -135,7 +165,7 @@ public class Seisme {
         return latitude.get();
     }
 
-    public SimpleStringProperty latitudeProperty() {
+    public StringProperty latitudeProperty() {
         return latitude;
     }
 
@@ -147,7 +177,7 @@ public class Seisme {
         return longitude.get();
     }
 
-    public SimpleStringProperty longitudeProperty() {
+    public StringProperty longitudeProperty() {
         return longitude;
     }
 
@@ -159,7 +189,7 @@ public class Seisme {
         return intensiteEpicentrale.get();
     }
 
-    public SimpleStringProperty intensiteEpicentraleProperty() {
+    public StringProperty intensiteEpicentraleProperty() {
         return intensiteEpicentrale;
     }
 
@@ -171,11 +201,29 @@ public class Seisme {
         return qualiteIntensiteEpicentrale.get();
     }
 
-    public SimpleStringProperty qualiteIntensiteEpicentraleProperty() {
+    public StringProperty qualiteIntensiteEpicentraleProperty() {
         return qualiteIntensiteEpicentrale;
     }
 
     public void setQualiteIntensiteEpicentrale(String qualiteIntensiteEpicentrale) {
         this.qualiteIntensiteEpicentrale.set(qualiteIntensiteEpicentrale);
+    }
+
+    @Override
+    public String toString() {
+        return "Seisme{" +
+                "id=" + id.get() +
+                ", date=" + date.get() +
+                ", heure=" + heure.get() +
+                ", nom=" + nom.get() +
+                ", regionEpicentrale=" + regionEpicentrale.get() +
+                ", choc=" + choc.get() +
+                ", xRGF93=" + xRGF93.get() +
+                ", yRGF93=" + yRGF93.get() +
+                ", latitude=" + latitude.get() +
+                ", longitude=" + longitude.get() +
+                ", intensiteEpicentrale=" + intensiteEpicentrale.get() +
+                ", qualiteIntensiteEpicentrale=" + qualiteIntensiteEpicentrale.get() +
+                '}';
     }
 }
