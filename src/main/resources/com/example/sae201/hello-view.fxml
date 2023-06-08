@@ -34,16 +34,67 @@
     <center>
         <TableView fx:id="tableView" prefWidth="800" prefHeight="480">
            <columns>
-                <TableColumn text="ID" prefWidth="100">
+                <TableColumn text="ID" prefWidth="50">
                     <cellValueFactory>
                         <PropertyValueFactory property="id" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Date" prefWidth="100">
+                <TableColumn text="Date" prefWidth="70">
                     <cellValueFactory>
                         <PropertyValueFactory property="date" />
                     </cellValueFactory>
                 </TableColumn>
+               <TableColumn text="Heure" prefWidth="100">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="heure" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Nom" prefWidth="300">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="nom" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Region epicentrale" prefWidth="150">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="regionEpicentrale" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Choc" prefWidth="100">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="choc" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="xRGF93" prefWidth="80">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="xRGF93" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="yRGF93" prefWidth="80">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="yRGF93" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Latitude" prefWidth="50">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="latitude" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Longitude" prefWidth="50">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="longitude" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Intensite epicentrale" prefWidth="100">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="intensiteEpicentrale" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn text="Qualite intensite epicentrale" prefWidth="130">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="qualiteIntensiteEpicentrale" />
+                   </cellValueFactory>
+               </TableColumn>
+
             <!-- Ajoute les autres colonnes ici -->
             </columns>
         </TableView>

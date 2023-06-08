@@ -14,14 +14,16 @@ import java.util.List;
 public class OuvertureJava2 {
 
     static List<Seisme> lSeismes = new ArrayList<>();
-    private static final String SAMPLE_CSV_FILE_PATH = "S2.01DeveloppementApplicationSeisme-SarahStat/src/main/resources/SisFrance_seismes_20230605113030.csv";
+    private static final String SAMPLE_CSV_FILE_PATH = "src/main/resources/SisFrance_seismes_20230605113030.csv";
     public static void main() throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(
                         SAMPLE_CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+
         ) {
             Seisme aAjouter;
+
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index
                 String id = csvRecord.get(0);
