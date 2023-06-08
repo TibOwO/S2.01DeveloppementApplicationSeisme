@@ -10,7 +10,10 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.TableColumn?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" >
+<?import org.controlsfx.control.GridCell?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" fx:id="fenetre" >
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
             <HBox alignment="CENTER" minHeight="50">
@@ -24,9 +27,9 @@
     <left>
         <HBox spacing="10" style="-fx-background-color: #989fe9;" >
             <VBox alignment="TOP_CENTER" spacing="20" >
-                <Button text="Tableau"/>
-                <Button text="Carte"/>
-                <Button text="Statistiques"/>
+                <Button text="Tableau" onAction="#handleTableau"/>
+                <Button text="Carte" onAction="#handleCarte"/>
+                <Button text="Statistiques" onAction="#handleStats"/>
                 <Button text="Importer un fichier CSV"/>
             </VBox>
         </HBox>
@@ -94,10 +97,14 @@
                        <PropertyValueFactory property="qualiteIntensiteEpicentrale" />
                    </cellValueFactory>
                </TableColumn>
-
-            <!-- Ajoute les autres colonnes ici -->
             </columns>
         </TableView>
+        <GridPane fx:id="graphiques">
+            <Label text="Ici les graphiques"/>
+        </GridPane>
+        <HBox fx:id="carte">
+            <Label text="Ici la carte"/>
+        </HBox>
     </center>
 
 </BorderPane>
