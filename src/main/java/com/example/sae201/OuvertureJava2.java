@@ -19,7 +19,7 @@ public class OuvertureJava2 {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(
                         SAMPLE_CSV_FILE_PATH));
-                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withSkipHeaderRecord());
 
         ) {
             Seisme aAjouter;
