@@ -47,7 +47,6 @@ public class HelloController {
     private MapView carte;
 
 
-
     @FXML
     private VBox carteContainer;
 
@@ -69,7 +68,7 @@ public class HelloController {
 
         /* Création et ajoute une couche à la carte */
         MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-       mapView.addLayer(mapLayer);
+        mapView.addLayer(mapLayer);
 
         /* Zoom de 5 */
         mapView.setZoom(6);
@@ -80,7 +79,7 @@ public class HelloController {
         //on enleve le point qui centre la map sur la France
         mapView.removeLayer(mapLayer);
 
-         /* Ajout de la map au container de la map (une Vbox) */
+        /* Ajout de la map au container de la map (une Vbox) */
         carteContainer.getChildren().add(mapView);
     }
 
@@ -94,28 +93,34 @@ public class HelloController {
     private NumberAxis nbSeismeParAnAxeY;
 
     @FXML
-    protected void handleCarte(){
+    protected void handleCarte() {
         fenetre.setCenter(mapView);
 
     }
 
     @FXML
-    protected void handleStats(){
+    protected void handleStats() {
         fenetre.setCenter(graphiques);
 
     }
 
     @FXML
-    protected void handleTableau(){
+    protected void handleTableau() {
         fenetre.setCenter(tableView);
     }
+
+    private ListSeisme lesSeismes;
+
+    public void initialize() {
+        lesSeismes = new ListSeisme(lSeismes);
+    }
+
     @FXML
     protected void handleRechercher() {
         List<Seisme> tri;
-        if (id.getText() == "" || id.getText().isEmpty()){
+        if (id.getText() == "" || id.getText().isEmpty()) {
             tri = lSeismes;
-        }
-        else{
+        } else {
             tri = filtrerParId(lSeismes, Integer.parseInt(id.getText()));
         }
 
@@ -145,8 +150,9 @@ public class HelloController {
                 .collect(Collectors.toList());
         return filteredList;
     }
+
     @FXML
-    public void handleCsv (ActionEvent event) {
+    public void handleCsv(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Sélectionner un fichier CSV");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers CSV", "*.csv"));
@@ -172,4 +178,6 @@ public class HelloController {
             }
         }
     }
+
+
 }
