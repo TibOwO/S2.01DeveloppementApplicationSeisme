@@ -14,6 +14,7 @@ import java.util.List;
 public class OuvertureJava2 {
 
     static List<Seisme> lSeismes = new ArrayList<>();
+    static ListSeisme lesSeismes;
     private static final String SAMPLE_CSV_FILE_PATH = "src/main/resources/SisFrance_seismes_20230605113030.csv";
     public static void main() throws IOException {
         try (
@@ -41,6 +42,8 @@ public class OuvertureJava2 {
 
                 lSeismes.add(aAjouter);
             }
+
+            lesSeismes = new ListSeisme(lSeismes);
             /*
             for (Seisme e : lSeismes){
                 System.out.println(e);

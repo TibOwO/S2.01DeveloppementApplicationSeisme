@@ -12,11 +12,9 @@ import javafx.scene.layout.HBox;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import static com.example.sae201.OuvertureJava2.lSeismes;
+import  static com.example.sae201.OuvertureJava2.lesSeismes;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.example.sae201.OuvertureJava2.lSeismes;
 
 public class HelloController {
 
@@ -52,12 +50,6 @@ public class HelloController {
     @FXML
     protected void handleTableau(){
         fenetre.setCenter(tableView);
-    }
-
-    private ListSeisme lesSeismes;
-
-    public void initialize(){
-        lesSeismes = new ListSeisme(lSeismes);
     }
 
     @FXML
