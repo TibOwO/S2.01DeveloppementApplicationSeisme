@@ -10,6 +10,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import static com.example.sae201.OuvertureJava2.lSeismes;
@@ -55,9 +58,16 @@ public class HelloController {
     }
     @FXML
     protected void handleRechercher() {
-        List<Seisme> tri = filtrerParId(lSeismes, id.getText());
+        List<Seisme> tri;
+        if (id.getText() == ""){
+            tri = lSeismes;
+        }
+        else{
+            tri = filtrerParId(lSeismes, Integer.parseInt(id.getText()));
+        }
+
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
-        tri = filtrerParDate(tri, date.getText());
+        tri = filtrerParDate(tri, Date.from(Instant.parse(date.getText())));
         tableView.setItems(FXCollections.observableArrayList(tri));
         System.out.println(tri);
     }
@@ -69,16 +79,16 @@ public class HelloController {
         return filteredList;
     }
 
-    public static List<Seisme> filtrerParId(List<Seisme> liste, String aGarder) {
+    public static List<Seisme> filtrerParId(List<Seisme> liste, int aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
 
-    public static List<Seisme> filtrerParDate(List<Seisme> liste, String aGarder) {
+    public static List<Seisme> filtrerParDate(List<Seisme> liste, Date aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.dateProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.dateProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }

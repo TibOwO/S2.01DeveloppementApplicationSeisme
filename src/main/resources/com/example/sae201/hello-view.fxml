@@ -13,6 +13,9 @@
 <?import org.controlsfx.control.GridCell?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" fx:id="fenetre" >
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
@@ -100,7 +103,14 @@
             </columns>
         </TableView>
         <GridPane fx:id="graphiques">
-            <Label text="Ici les graphiques"/>
+            <LineChart fx:id="nbSeismeParAn">
+                <xAxis>
+                    <NumberAxis side="BOTTOM" lowerBound="400" upperBound="2025" label="Annee"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis lowerBound="0" upperBound="20" label="Nombre de seismes"/>
+                </yAxis>
+            </LineChart>
         </GridPane>
         <HBox fx:id="carte">
             <Label text="Ici la carte"/>

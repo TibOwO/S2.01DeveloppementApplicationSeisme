@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OuvertureJava2 {
@@ -25,8 +27,8 @@ public class OuvertureJava2 {
             Seisme aAjouter;
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index
-                String id = csvRecord.get(0);
-                String date = csvRecord.get(1);
+                int id = Integer.parseInt(csvRecord.get(0));
+                Date date = Date.from(Instant.parse(csvRecord.get(1)));
                 String heure = csvRecord.get(2);
                 String nom = csvRecord.get(3);
                 String regionEpicentrale = csvRecord.get(4);

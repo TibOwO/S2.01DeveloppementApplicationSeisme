@@ -1,13 +1,14 @@
 package com.example.sae201;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
+import java.util.Date;
 
 
 public class Seisme {
 
-    private StringProperty id = new SimpleStringProperty();
-    private StringProperty date;
+    private IntegerProperty id;
+    private ObjectProperty<Date> date;
     private StringProperty heure;
     private StringProperty nom;
     private StringProperty regionEpicentrale;
@@ -34,9 +35,9 @@ public class Seisme {
         this.qualiteIntensiteEpicentrale = qualiteIntensiteEpicentrale;
     }*/
 
-    public Seisme(String id, String date, String heure, String nom, String regionEpicentrale, String choc, String xRGF93, String yRGF93, String latitude, String longitude, String intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
-        this.id = new SimpleStringProperty(id);
-        this.date = new SimpleStringProperty(date);
+    public Seisme(int id, Date date, String heure, String nom, String regionEpicentrale, String choc, String xRGF93, String yRGF93, String latitude, String longitude, String intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
+        this.id = new SimpleIntegerProperty(id);
+        this.date = new SimpleObjectProperty<Date>(date);
         this.heure = new SimpleStringProperty(heure);
         this.nom = new SimpleStringProperty(nom);
         this.regionEpicentrale = new SimpleStringProperty(regionEpicentrale);
@@ -50,42 +51,29 @@ public class Seisme {
     }
 
     public Seisme() {
-        /*id = new SimpleStringProperty("");
-        //this.id.setValue("");
-        this.date.setValue("");
-        this.heure.setValue("");
-        this.nom.setValue("");
-        this.regionEpicentrale.setValue("");
-        this.choc.setValue("");
-        this.xRGF93.setValue("");
-        this.yRGF93.setValue("");
-        this.latitude.setValue("");
-        this.longitude.setValue("");
-        this.intensiteEpicentrale.setValue("");
-        this.qualiteIntensiteEpicentrale.setValue("");*/
     }
 
-    public String getId() {
+    public int getId() {
         return id.get();
     }
 
-    public StringProperty idProperty() {
+    public IntegerProperty idProperty() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id.set(id);
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date.get();
     }
 
-    public StringProperty dateProperty() {
+    public ObjectProperty<Date> dateProperty() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date.set(date);
     }
 
