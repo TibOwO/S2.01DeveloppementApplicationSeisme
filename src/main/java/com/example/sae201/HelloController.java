@@ -65,6 +65,8 @@ public class HelloController {
     //Initialisation de la map (appelée automatiquement)
     @FXML
     public void initialize() {
+        //création de la liste de séismes
+        lesSeismes = new ListSeisme(lSeismes);
 
         //Initialisation de la MapView
         this.mapView = new MapView();
@@ -114,16 +116,9 @@ public class HelloController {
     protected void handleTableau() {
         fenetre.setCenter(tableView);
     }
-
-<<<<<<< HEAD
     private ListSeisme lesSeismes;
 
-    public void initialize() {
-        lesSeismes = new ListSeisme(lSeismes);
-    }
 
-=======
->>>>>>> 2594cec (transfert de l'initialisation de lesSeismes dans OuvertureJava2)
     @FXML
     protected void handleRechercher() {
         List<Seisme> tri;
