@@ -30,7 +30,7 @@
                 <Button text="Tableau" onAction="#handleTableau"/>
                 <Button text="Carte" onAction="#handleCarte"/>
                 <Button text="Statistiques" onAction="#handleStats"/>
-                <Button text="Importer un fichier CSV"/>
+                <Button text="Importer un fichier CSV" onAction="#handleCsv"/>
             </VBox>
         </HBox>
     </left>
