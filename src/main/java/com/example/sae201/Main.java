@@ -36,9 +36,9 @@ public class Main extends Application {
 
         /* Création et ajoute une couche à la carte */
 
-        // MapLayer mapLayer = new CustomPinLayer(mapPoint);
-        // MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-        // mapView.addLayer(mapLayer);
+        //MapLayer mapLayer = new CustomPinLayer(mapPoint);
+        //MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+        //mapView.addLayer(mapLayer);
 
         /* Zoom de 5 */
         mapView.setZoom(5);

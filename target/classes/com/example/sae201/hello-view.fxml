@@ -1,98 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
 
-<?import org.controlsfx.control.GridCell?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Label?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" fx:id="fenetre" >
+<BorderPane fx:id="fenetre" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae201.HelloController">
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
             <HBox alignment="CENTER" minHeight="50">
                 <TextField fx:id="id" promptText="ID" />
                 <TextField fx:id="intensiteEpicentrale" promptText="Intensite epicentrale" />
                 <TextField fx:id="date" promptText="Date (aaaa/mm/jj)" />
-                <Button text="Rechercher" onAction="#handleRechercher"/>
+                <Button onAction="#handleRechercher" text="Rechercher" />
             </HBox>
         </VBox>
     </top>
     <left>
-        <HBox spacing="10" style="-fx-background-color: #989fe9;" >
-            <VBox alignment="TOP_CENTER" spacing="20" >
-                <Button text="Tableau" onAction="#handleTableau"/>
-                <Button text="Carte" onAction="#handleCarte"/>
-                <Button text="Statistiques" onAction="#handleStats"/>
-                <Button text="Importer un fichier CSV" onAction="#handleCsv"/>
+        <HBox spacing="10" style="-fx-background-color: #989fe9;">
+            <VBox alignment="TOP_CENTER" spacing="20">
+                <Button onAction="#handleTableau" text="Tableau" />
+                <Button onAction="#handleCarte" text="Carte" />
+                <Button onAction="#handleStats" text="Statistiques" />
+                <Button onAction="#handleCsv" text="Importer un fichier CSV" />
             </VBox>
         </HBox>
     </left>
     <center>
-        <TableView fx:id="tableView" prefWidth="800" prefHeight="480">
+        <TableView fx:id="tableView" prefHeight="480" prefWidth="800">
            <columns>
-                <TableColumn text="ID" prefWidth="50">
+                <TableColumn prefWidth="50" text="ID">
                     <cellValueFactory>
                         <PropertyValueFactory property="id" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Date" prefWidth="70">
+                <TableColumn prefWidth="70" text="Date">
                     <cellValueFactory>
                         <PropertyValueFactory property="date" />
                     </cellValueFactory>
                 </TableColumn>
-               <TableColumn text="Heure" prefWidth="100">
+               <TableColumn prefWidth="100" text="Heure">
                    <cellValueFactory>
                        <PropertyValueFactory property="heure" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Nom" prefWidth="300">
+               <TableColumn prefWidth="300" text="Nom">
                    <cellValueFactory>
                        <PropertyValueFactory property="nom" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Region epicentrale" prefWidth="150">
+               <TableColumn prefWidth="150" text="Region epicentrale">
                    <cellValueFactory>
                        <PropertyValueFactory property="regionEpicentrale" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Choc" prefWidth="100">
+               <TableColumn prefWidth="100" text="Choc">
                    <cellValueFactory>
                        <PropertyValueFactory property="choc" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="xRGF93" prefWidth="80">
+               <TableColumn prefWidth="80" text="xRGF93">
                    <cellValueFactory>
                        <PropertyValueFactory property="xRGF93" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="yRGF93" prefWidth="80">
+               <TableColumn prefWidth="80" text="yRGF93">
                    <cellValueFactory>
                        <PropertyValueFactory property="yRGF93" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Latitude" prefWidth="50">
+               <TableColumn prefWidth="50" text="Latitude">
                    <cellValueFactory>
                        <PropertyValueFactory property="latitude" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Longitude" prefWidth="50">
+               <TableColumn prefWidth="50" text="Longitude">
                    <cellValueFactory>
                        <PropertyValueFactory property="longitude" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Intensite epicentrale" prefWidth="100">
+               <TableColumn prefWidth="100" text="Intensite epicentrale">
                    <cellValueFactory>
                        <PropertyValueFactory property="intensiteEpicentrale" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Qualite intensite epicentrale" prefWidth="130">
+               <TableColumn prefWidth="130" text="Qualite intensite epicentrale">
                    <cellValueFactory>
                        <PropertyValueFactory property="qualiteIntensiteEpicentrale" />
                    </cellValueFactory>
@@ -100,10 +91,16 @@
             </columns>
         </TableView>
         <GridPane fx:id="graphiques">
-            <Label text="Ici les graphiques"/>
+            <Label text="Ici les graphiques" />
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
         <HBox fx:id="carte">
-            <Label text="Ici la carte"/>
+         <BorderPane prefHeight="200.0" prefWidth="435.0" />
         </HBox>
     </center>
 
