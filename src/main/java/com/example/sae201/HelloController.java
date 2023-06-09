@@ -53,33 +53,21 @@ public class HelloController {
     protected void handleTableau(){
         fenetre.setCenter(tableView);
     }
+
+    private ListSeisme lesSeismes;
+
+    public void initialize(){
+        lesSeismes = new ListSeisme(lSeismes);
+    }
+
     @FXML
     protected void handleRechercher() {
-        List<Seisme> tri = filtrerParId(lSeismes, id.getText());
-        tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
-        tri = filtrerParDate(tri, date.getText());
-        tableView.setItems(FXCollections.observableArrayList(tri));
-        System.out.println(tri);
+        ListSeisme tri = lesSeismes.filtrerParId(id.getText());
+        tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
+        tri = tri.filtrerParDate(date.getText());
+        tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
+        System.out.println(tri.getSeismeList());
     }
 
-    public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().get().startsWith(aGarder))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
 
-    public static List<Seisme> filtrerParId(List<Seisme> liste, String aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().get().startsWith(aGarder))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
-
-    public static List<Seisme> filtrerParDate(List<Seisme> liste, String aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.dateProperty().get().startsWith(aGarder))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
 }
