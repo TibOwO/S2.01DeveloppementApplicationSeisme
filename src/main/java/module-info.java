@@ -8,7 +8,6 @@ module com.example.sae201 {
     requires java.desktop;
     requires java.logging;
     requires jdk.jsobject;
-    requires javafx.swing;
     requires javafx.web;
 
     opens com.example.sae201 to javafx.fxml;
