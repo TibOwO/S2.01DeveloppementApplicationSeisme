@@ -23,7 +23,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+<<<<<<< HEAD
 import static com.example.sae201.OuvertureJava2.lSeismes;
+=======
+import  static com.example.sae201.OuvertureJava2.lesSeismes;
+import java.util.List;
+import java.util.stream.Collectors;
+>>>>>>> 2594cec (transfert de l'initialisation de lesSeismes dans OuvertureJava2)
 
 public class HelloController {
 
@@ -109,12 +115,15 @@ public class HelloController {
         fenetre.setCenter(tableView);
     }
 
+<<<<<<< HEAD
     private ListSeisme lesSeismes;
 
     public void initialize() {
         lesSeismes = new ListSeisme(lSeismes);
     }
 
+=======
+>>>>>>> 2594cec (transfert de l'initialisation de lesSeismes dans OuvertureJava2)
     @FXML
     protected void handleRechercher() {
         List<Seisme> tri;
