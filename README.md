@@ -18,4 +18,8 @@ absolu de votre machine
 
 5.) Cocher la case ajouté a la liste des dependences portant le nom du chemin absolu precedemment ajouté.
 
+6.) Appuyez encore sur le petit "+" afin d'ajouter la 2eme dépendence (jfxcore.javafx.web)
+
+7.) Library --> From Maven et rechercher "jfxcore.javafx.web" .L'ajouter.
+
 6.) Cliquer "Apply" et "Ok"
