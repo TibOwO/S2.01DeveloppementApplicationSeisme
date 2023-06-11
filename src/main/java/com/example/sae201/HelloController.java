@@ -3,22 +3,13 @@ package com.example.sae201;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import static com.example.sae201.OuvertureJava2.lSeismes;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static com.example.sae201.OuvertureJava2.lSeismes;
 
 public class HelloController {
@@ -67,7 +58,7 @@ public class HelloController {
         }
 
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
-        tri = filtrerParDate(tri, Date.from(Instant.parse(date.getText())));
+        tri = filtrerParDate(tri, date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri));
         System.out.println(tri);
     }
@@ -86,7 +77,7 @@ public class HelloController {
         return filteredList;
     }
 
-    public static List<Seisme> filtrerParDate(List<Seisme> liste, Date aGarder) {
+    public static List<Seisme> filtrerParDate(List<Seisme> liste, String aGarder) {
         List<Seisme> filteredList = liste.stream()
                 .filter(entry -> entry.dateProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());

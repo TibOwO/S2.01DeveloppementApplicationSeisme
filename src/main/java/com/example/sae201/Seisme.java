@@ -2,13 +2,13 @@ package com.example.sae201;
 
 import javafx.beans.property.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class Seisme {
 
     private IntegerProperty id;
-    private ObjectProperty<Date> date;
+    private SimpleObjectProperty<LocalDate> date;
     private StringProperty heure;
     private StringProperty nom;
     private StringProperty regionEpicentrale;
@@ -35,9 +35,9 @@ public class Seisme {
         this.qualiteIntensiteEpicentrale = qualiteIntensiteEpicentrale;
     }*/
 
-    public Seisme(int id, Date date, String heure, String nom, String regionEpicentrale, String choc, String xRGF93, String yRGF93, String latitude, String longitude, String intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
+    public Seisme(int id, LocalDate date, String heure, String nom, String regionEpicentrale, String choc, String xRGF93, String yRGF93, String latitude, String longitude, String intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
         this.id = new SimpleIntegerProperty(id);
-        this.date = new SimpleObjectProperty<Date>(date);
+        this.date = new SimpleObjectProperty<LocalDate>(date);
         this.heure = new SimpleStringProperty(heure);
         this.nom = new SimpleStringProperty(nom);
         this.regionEpicentrale = new SimpleStringProperty(regionEpicentrale);
@@ -65,15 +65,15 @@ public class Seisme {
         this.id.set(id);
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date.get();
     }
 
-    public ObjectProperty<Date> dateProperty() {
+    public ObjectProperty<LocalDate> dateProperty() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date.set(date);
     }
 
