@@ -1,6 +1,8 @@
 package com.example.sae201;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
@@ -34,6 +36,15 @@ public class HelloController {
     private HBox carte;
 
     @FXML
+    private LineChart nbSeismeParAn;
+
+    @FXML
+    private NumberAxis nbSeismeParAnAxeX;
+
+    @FXML
+    private NumberAxis nbSeismeParAnAxeY;
+
+    @FXML
     protected void handleCarte(){
         fenetre.setCenter(carte);
     }
@@ -41,6 +52,7 @@ public class HelloController {
     @FXML
     protected void handleStats(){
         fenetre.setCenter(graphiques);
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY);
     }
 
     @FXML

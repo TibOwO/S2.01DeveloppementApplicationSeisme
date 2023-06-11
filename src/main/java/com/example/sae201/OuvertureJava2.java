@@ -36,7 +36,6 @@ public class OuvertureJava2 {
                 String nom = csvRecord.get(3);
                 String regionEpicentrale = csvRecord.get(4);
                 String choc = csvRecord.get(5);
-                System.out.println(csvRecord.get(6).isEmpty());
                 Double xRGF93 = (!(csvRecord.get(6).isEmpty())) ? Double.parseDouble(csvRecord.get(6)) : -1;
                 Double yRGF93 = (!(csvRecord.get(7).isEmpty())) ? Double.parseDouble(csvRecord.get(7)) : -1;
                 Double latitude = (!(csvRecord.get(8).isEmpty())) ? Double.parseDouble(csvRecord.get(8)) : -1;
