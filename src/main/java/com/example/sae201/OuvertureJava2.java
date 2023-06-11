@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.FloatBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.*;
@@ -35,11 +36,12 @@ public class OuvertureJava2 {
                 String nom = csvRecord.get(3);
                 String regionEpicentrale = csvRecord.get(4);
                 String choc = csvRecord.get(5);
-                String xRGF93 = csvRecord.get(6);
-                String yRGF93 = csvRecord.get(7);
-                String latitude = csvRecord.get(8);
-                String longitude = csvRecord.get(9);
-                String intensiteEpicentrale = csvRecord.get(10);
+                System.out.println(csvRecord.get(6).isEmpty());
+                Double xRGF93 = (!(csvRecord.get(6).isEmpty())) ? Double.parseDouble(csvRecord.get(6)) : -1;
+                Double yRGF93 = (!(csvRecord.get(7).isEmpty())) ? Double.parseDouble(csvRecord.get(7)) : -1;
+                Double latitude = (!(csvRecord.get(8).isEmpty())) ? Double.parseDouble(csvRecord.get(8)) : -1;
+                Double longitude = (!(csvRecord.get(9).isEmpty())) ? Double.parseDouble(csvRecord.get(9)) : -1;
+                Float intensiteEpicentrale = (!(csvRecord.get(10).isEmpty())) ? Float.parseFloat(csvRecord.get(10)) : -1;
                 String qualiteIntensiteEpicentrale = csvRecord.get(11);
                 aAjouter = new Seisme(id, date, heure, nom, regionEpicentrale, choc, xRGF93, yRGF93, latitude, longitude, intensiteEpicentrale, qualiteIntensiteEpicentrale);
 

@@ -65,7 +65,7 @@ public class HelloController {
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
