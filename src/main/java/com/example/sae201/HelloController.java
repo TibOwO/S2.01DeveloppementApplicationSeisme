@@ -50,7 +50,7 @@ public class HelloController {
     @FXML
     protected void handleRechercher() {
         List<Seisme> tri;
-        if (id.getText() == ""){
+        if (id.getText() == "" || id.getText().isEmpty()){
             tri = lSeismes;
         }
         else{
