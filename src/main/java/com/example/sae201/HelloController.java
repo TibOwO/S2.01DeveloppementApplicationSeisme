@@ -92,7 +92,6 @@ public class HelloController {
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
         tri = filtrerParDate(tri, date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri));
-        System.out.println(tri);
     }
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {

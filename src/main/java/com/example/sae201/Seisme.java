@@ -19,21 +19,6 @@ public class Seisme {
     private StringProperty intensiteEpicentrale;
     private StringProperty qualiteIntensiteEpicentrale;
 
-    /*public Seisme(SimpleStringProperty id, SimpleStringProperty date, SimpleStringProperty heure, SimpleStringProperty nom, SimpleStringProperty regionEpicentrale, SimpleStringProperty choc, SimpleStringProperty xRGF93, SimpleStringProperty yRGF93, SimpleStringProperty latitude, SimpleStringProperty longitude, SimpleStringProperty intensiteEpicentrale, SimpleStringProperty qualiteIntensiteEpicentrale) {
-        this.id = new SimpleStringProperty(id);
-        this.date = date;
-        this.heure = heure;
-        this.nom = nom;
-        this.regionEpicentrale = regionEpicentrale;
-        this.choc = choc;
-        this.xRGF93 = xRGF93;
-        this.yRGF93 = yRGF93;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.intensiteEpicentrale = intensiteEpicentrale;
-        this.qualiteIntensiteEpicentrale = qualiteIntensiteEpicentrale;
-    }*/
-
     public Seisme(String id, String date, String heure, String nom, String regionEpicentrale, String choc, String xRGF93, String yRGF93, String latitude, String longitude, String intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
         this.id = new SimpleStringProperty(id);
         this.date = new SimpleStringProperty(date);
@@ -50,19 +35,6 @@ public class Seisme {
     }
 
     public Seisme() {
-        /*id = new SimpleStringProperty("");
-        //this.id.setValue("");
-        this.date.setValue("");
-        this.heure.setValue("");
-        this.nom.setValue("");
-        this.regionEpicentrale.setValue("");
-        this.choc.setValue("");
-        this.xRGF93.setValue("");
-        this.yRGF93.setValue("");
-        this.latitude.setValue("");
-        this.longitude.setValue("");
-        this.intensiteEpicentrale.setValue("");
-        this.qualiteIntensiteEpicentrale.setValue("");*/
     }
 
     public String getId() {

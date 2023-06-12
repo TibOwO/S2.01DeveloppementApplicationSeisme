@@ -14,7 +14,6 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         URL fxmlLocation = getClass().getResource("hello-view.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        System.out.println(fxmlLocation);
         Scene scene = new Scene(fxmlLoader.load(), 820, 540);
         stage.setTitle("Hello!");
         OuvertureJava2.main();
