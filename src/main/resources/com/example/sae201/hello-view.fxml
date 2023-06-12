@@ -3,6 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+<?import com.gluonhq.maps.MapView.*?>
+<?import javafx.scene.layout.Pane?>
+<?import com.gluonhq.maps.MapView?>
 
 <BorderPane fx:id="fenetre" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae201.HelloController">
     <top>
@@ -92,16 +95,8 @@
         </TableView>
         <GridPane fx:id="graphiques">
             <Label text="Ici les graphiques" />
-         <columnConstraints>
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-         </rowConstraints>
         </GridPane>
-        <HBox fx:id="carte">
-         <BorderPane prefHeight="200.0" prefWidth="435.0" />
-        </HBox>
+        <VBox fx:id="carteContainer"/>
     </center>
 
 </BorderPane>

@@ -5,23 +5,21 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
+
+
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import static com.example.sae201.OuvertureJava2.lSeismes;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static com.example.sae201.OuvertureJava2.lSeismes;
 
 public class HelloController {
@@ -41,13 +39,39 @@ public class HelloController {
 
     @FXML
     private GridPane graphiques;
+    
+    @FXML
+    private MapView carte;
+
+
 
     @FXML
-    private HBox carte;
+    private VBox carteContainer;
+
+    @FXML 
+    private MapView mapView;
+
+    @FXML
+    public void initialize() {
+
+        this.mapView = new MapView();
+
+        
+        /* Création du point avec latitude et longitude */
+        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
+
+        /* Zoom de 5 */
+        mapView.setZoom(5);
+
+        /* Centre la carte sur le point */
+        mapView.flyTo(0, mapPoint, 0.1);
+
+        carteContainer.getChildren().add(mapView);
+    }
 
     @FXML
     protected void handleCarte(){
-        fenetre.setCenter(carte);
+        fenetre.setCenter(mapView);
     }
 
     @FXML

@@ -8,12 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-
-    public static void main(String[] args) {
-        launch();
-    }
-
+public class Carte extends Application {
     @Override
     public void start(Stage stage) {
 
