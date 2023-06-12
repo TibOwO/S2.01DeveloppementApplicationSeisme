@@ -51,9 +51,11 @@ public class HelloController {
     @FXML 
     private MapView mapView;
 
+    //Initialisation de la map (appelée automatiquement)
     @FXML
     public void initialize() {
 
+        //Initialisation de la MapView
         this.mapView = new MapView();
 
         
@@ -66,6 +68,7 @@ public class HelloController {
         /* Centre la carte sur le point */
         mapView.flyTo(0, mapPoint, 0.1);
 
+         /* Ajout de la map au container de la map (une Vbox) */
         carteContainer.getChildren().add(mapView);
     }
 
