@@ -1,27 +1,30 @@
 package com.example.sae201;
 
 import com.gluonhq.maps.MapLayer;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
-import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import com.gluonhq.maps.MapPoint;
-import com.gluonhq.maps.MapView;
-
-
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static com.example.sae201.OuvertureJava2.lSeismes;
+import static com.example.sae201.Seisme.latitude;
+import static com.example.sae201.Seisme.longitude;
 
 public class HelloController {
 
@@ -43,8 +46,6 @@ public class HelloController {
     
     @FXML
     private MapView carte;
-
-
 
     @FXML
     private VBox carteContainer;
@@ -85,7 +86,6 @@ public class HelloController {
     @FXML
     protected void handleCarte(){
         fenetre.setCenter(mapView);
-
     }
 
     @FXML
@@ -98,33 +98,82 @@ public class HelloController {
         fenetre.setCenter(tableView);
     }
     @FXML
+
+    public static List<MapPoint> creationPointRecherche(List<Seisme> listRecherche) {
+        List<MapPoint> listMapPoint = new ArrayList<>();
+        //System.out.println(listRecherche);
+
+        /*
+        for (Seisme recherche : listRecherche) {
+            double lat = Double.parseDouble(recherche.getLatitude());
+            double lon = Double.parseDouble(recherche.getLongitude());
+            MapPoint mapPoint = new MapPoint(lat, lon);
+            listMapPoint.add(mapPoint);
+
+        }
+
+         */
+        for (int i = 0; i<listRecherche.size(); i++){
+            MapPoint mapPoint;
+            Double lat = listRecherche.get(i).latitudeProperty().get();
+            Double lon = listRecherche.get(i).longitudeProperty().getValue();
+            mapPoint = new MapPoint(lat , lon);
+            listMapPoint.add(mapPoint);
+        }
+
+        return listMapPoint;
+    }
+
+
+    @FXML
     protected void handleRechercher() {
-        List<Seisme> tri = filtrerParId(lSeismes, id.getText());
+        List<Seisme> tri;
+        if (id.getText() == "" || id.getText().isEmpty()){
+            tri = lSeismes;
+        }
+        else{
+            tri = filtrerParId(lSeismes, Integer.parseInt(id.getText()));
+        }
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
         tri = filtrerParDate(tri, date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri));
+
+        List<MapPoint> listMapPoint = new ArrayList<MapPoint>();
+        listMapPoint = (List<MapPoint>) creationPointRecherche(tri);
+        //System.out.println(listMapPoint);
+        /* Création et ajoute une couche à la carte */
+        for (int i = 0; i<listMapPoint.size(); ++i){
+            MapLayer mapLayer = new CustomCircleMarkerLayer(listMapPoint.get(i));
+            mapView.addLayer(mapLayer);
+            //System.out.println(listMapPoint.get(i).getLatitude() + listMapPoint.get(i).getLongitude());
+        }
+
+
+
+
     }
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
 
-    public static List<Seisme> filtrerParId(List<Seisme> liste, String aGarder) {
+    public static List<Seisme> filtrerParId(List<Seisme> liste, int aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
 
     public static List<Seisme> filtrerParDate(List<Seisme> liste, String aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.dateProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.dateProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
+
     @FXML
     public void handleCsv (ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -140,7 +189,7 @@ public class HelloController {
             lSeismes.clear();
             // Appeler la méthode pour lire le fichier CSV et effectuer le traitement nécessaire
             try {
-                OuvertureJava2.main(selectedFile.getAbsolutePath());
+                OuvertureJava2.main();
 
                 // Mettre à jour l'affichage dans le tableau
                 tableView.setItems(FXCollections.observableArrayList(lSeismes));
