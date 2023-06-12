@@ -1,5 +1,6 @@
 package com.example.sae201;
 
+import com.gluonhq.maps.MapLayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -51,6 +52,9 @@ public class HelloController {
     @FXML 
     private MapView mapView;
 
+    @FXML
+    private MapPoint mapPoint;
+
     //Initialisation de la map (appelée automatiquement)
     @FXML
     public void initialize() {
@@ -58,15 +62,21 @@ public class HelloController {
         //Initialisation de la MapView
         this.mapView = new MapView();
 
-        
         /* Création du point avec latitude et longitude */
         MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
 
+        /* Création et ajoute une couche à la carte */
+        MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+       mapView.addLayer(mapLayer);
+
         /* Zoom de 5 */
-        mapView.setZoom(5);
+        mapView.setZoom(6);
 
         /* Centre la carte sur le point */
-        mapView.flyTo(0, mapPoint, 0.1);
+        mapView.flyTo(0, mapPoint, 1);
+
+        //on enleve le point qui centre la map sur la France
+        mapView.removeLayer(mapLayer);
 
          /* Ajout de la map au container de la map (une Vbox) */
         carteContainer.getChildren().add(mapView);
@@ -75,6 +85,7 @@ public class HelloController {
     @FXML
     protected void handleCarte(){
         fenetre.setCenter(mapView);
+
     }
 
     @FXML
