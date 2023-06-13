@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class ListSeisme {
     private List<Seisme> seismeList;
 
+    //Les constructeurs
     public ListSeisme() {
         this.seismeList = new ArrayList<>();
     }
@@ -15,27 +16,33 @@ public class ListSeisme {
         this.seismeList = uneListe;
     }
 
+
+
+
+    //Les fonctions de recherche
     public ListSeisme filtrerParIntensiteEpicentrale(String aGarder) {
         ListSeisme filteredList = new ListSeisme(this.getSeismeList().stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList()));
         return filteredList;
     }
 
-    public ListSeisme filtrerParId(String aGarder) {
+    public ListSeisme filtrerParId(int aGarder) {
         ListSeisme filteredList = new ListSeisme(this.getSeismeList().stream()
-                .filter(entry -> entry.idProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList()));
         return filteredList;
     }
 
     public ListSeisme filtrerParDate(String aGarder) {
         ListSeisme filteredList = new ListSeisme(this.getSeismeList().stream()
-                .filter(entry -> entry.dateProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.dateProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList()));
         return filteredList;
     }
 
+
+    //Les getters et setters
     public List<Seisme> getSeismeList() {
         return seismeList;
     }

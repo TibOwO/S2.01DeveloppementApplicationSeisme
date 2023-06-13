@@ -1,33 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import com.gluonhq.maps.MapView.*?>
 <?import javafx.scene.layout.Pane?>
 <?import com.gluonhq.maps.MapView?>
-=======
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.TableColumn?>
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
 
 <?import org.controlsfx.control.GridCell?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Label?>
-<<<<<<< HEAD
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-=======
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" fx:id="fenetre" >
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
@@ -35,11 +20,7 @@
                 <TextField fx:id="id" promptText="ID" />
                 <TextField fx:id="intensiteEpicentrale" promptText="Intensite epicentrale" />
                 <TextField fx:id="date" promptText="Date (aaaa/mm/jj)" />
-<<<<<<< HEAD
                 <Button onAction="#handleRechercher" text="Rechercher" />
-=======
-                <Button text="Rechercher" onAction="#handleRechercher"/>
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
             </HBox>
         </VBox>
     </top>
@@ -54,114 +35,64 @@
         </HBox>
     </left>
     <center>
-<<<<<<< HEAD
         <TableView fx:id="tableView" prefHeight="480" prefWidth="800">
            <columns>
                 <TableColumn prefWidth="50" text="ID">
-=======
-        <TableView fx:id="tableView" prefWidth="800" prefHeight="480">
-           <columns>
-                <TableColumn text="ID" prefWidth="50">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                     <cellValueFactory>
                         <PropertyValueFactory property="id" />
                     </cellValueFactory>
                 </TableColumn>
-<<<<<<< HEAD
                 <TableColumn prefWidth="70" text="Date">
-=======
-                <TableColumn text="Date" prefWidth="70">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                     <cellValueFactory>
                         <PropertyValueFactory property="date" />
                     </cellValueFactory>
                 </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="100" text="Heure">
-=======
-               <TableColumn text="Heure" prefWidth="100">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="heure" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="300" text="Nom">
-=======
-               <TableColumn text="Nom" prefWidth="300">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="nom" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="150" text="Region epicentrale">
-=======
-               <TableColumn text="Region epicentrale" prefWidth="150">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="regionEpicentrale" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="100" text="Choc">
-=======
-               <TableColumn text="Choc" prefWidth="100">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="choc" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="80" text="xRGF93">
-=======
-               <TableColumn text="xRGF93" prefWidth="80">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="xRGF93" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="80" text="yRGF93">
-=======
-               <TableColumn text="yRGF93" prefWidth="80">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="yRGF93" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="50" text="Latitude">
-=======
-               <TableColumn text="Latitude" prefWidth="50">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="latitude" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="50" text="Longitude">
-=======
-               <TableColumn text="Longitude" prefWidth="50">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="longitude" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="100" text="Intensite epicentrale">
-=======
-               <TableColumn text="Intensite epicentrale" prefWidth="100">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="intensiteEpicentrale" />
                    </cellValueFactory>
                </TableColumn>
-<<<<<<< HEAD
                <TableColumn prefWidth="130" text="Qualite intensite epicentrale">
-=======
-               <TableColumn text="Qualite intensite epicentrale" prefWidth="130">
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
                    <cellValueFactory>
                        <PropertyValueFactory property="qualiteIntensiteEpicentrale" />
                    </cellValueFactory>
@@ -169,24 +100,16 @@
             </columns>
         </TableView>
         <GridPane fx:id="graphiques">
-<<<<<<< HEAD
             <LineChart fx:id="nbSeismeParAn">
                 <xAxis>
-                    <NumberAxis fx:id="nbSeismeParAnAxeX" side="BOTTOM" lowerBound="400" upperBound="2025" label="Annee"/>
+                    <NumberAxis fx:id="nbSeismeParAnAxeX" side="BOTTOM" label="Annee" autoRanging="false"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis fx:id="nbSeismeParAnAxeY" lowerBound="0" upperBound="20" label="Nombre de seismes"/>
+                    <NumberAxis fx:id="nbSeismeParAnAxeY" label="Nombre de seismes" autoRanging="false"/>
                 </yAxis>
             </LineChart>
         </GridPane>
         <VBox fx:id="carteContainer"/>
-=======
-            <Label text="Ici les graphiques"/>
-        </GridPane>
-        <HBox fx:id="carte">
-            <Label text="Ici la carte"/>
-        </HBox>
->>>>>>> 9b1ef01 (test de mettre les @fxml dans une autre clase mais échec)
     </center>
 
 </BorderPane>

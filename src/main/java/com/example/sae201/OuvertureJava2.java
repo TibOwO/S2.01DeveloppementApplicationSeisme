@@ -78,12 +78,8 @@ public class OuvertureJava2 {
                 lSeismes.add(aAjouter);
             }
 
+            //création de la liste de séismes
             lesSeismes = new ListSeisme(lSeismes);
-            /*
-            for (Seisme e : lSeismes){
-                System.out.println(e);
-            }
-             */
 
         }
     }
