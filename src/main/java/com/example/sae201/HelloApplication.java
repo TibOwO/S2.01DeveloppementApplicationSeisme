@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.io.IOException;
 
+/**
+ * Sert a lancer l'application
+ */
 public class HelloApplication extends Application {
 
     @Override

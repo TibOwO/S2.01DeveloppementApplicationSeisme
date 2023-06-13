@@ -4,7 +4,9 @@ import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
-
+/**
+ * Sert a stocker les seismes avec tous les attributs dans le type correspondant
+ */
 public class Seisme {
 
     private IntegerProperty id;
@@ -19,21 +21,6 @@ public class Seisme {
     private DoubleProperty longitude;
     private FloatProperty intensiteEpicentrale;
     private StringProperty qualiteIntensiteEpicentrale;
-
-    /*public Seisme(SimpleStringProperty id, SimpleStringProperty date, SimpleStringProperty heure, SimpleStringProperty nom, SimpleStringProperty regionEpicentrale, SimpleStringProperty choc, SimpleStringProperty xRGF93, SimpleStringProperty yRGF93, SimpleStringProperty latitude, SimpleStringProperty longitude, SimpleStringProperty intensiteEpicentrale, SimpleStringProperty qualiteIntensiteEpicentrale) {
-        this.id = new SimpleStringProperty(id);
-        this.date = date;
-        this.heure = heure;
-        this.nom = nom;
-        this.regionEpicentrale = regionEpicentrale;
-        this.choc = choc;
-        this.xRGF93 = xRGF93;
-        this.yRGF93 = yRGF93;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.intensiteEpicentrale = intensiteEpicentrale;
-        this.qualiteIntensiteEpicentrale = qualiteIntensiteEpicentrale;
-    }*/
 
     public Seisme(int id, LocalDate date, String heure, String nom, String regionEpicentrale, String choc, double xRGF93, double yRGF93, double latitude, double longitude, float intensiteEpicentrale, String qualiteIntensiteEpicentrale) {
         this.id = new SimpleIntegerProperty(id);

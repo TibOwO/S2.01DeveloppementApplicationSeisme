@@ -12,10 +12,10 @@ import java.util.List;
 public class Statistiques {
 
     /**
-     *
+     * Sert a faire un linechart du nombre de seisme par an
      * @param linechart LineChart defini dans le FXML
      * @param xAxis defini dans le FXML
-     * @param donnees
+     * @param donnees liste de Seisme qui peut etre triee
      */
     public static void nbSeismesParAn(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
@@ -44,6 +44,12 @@ public class Statistiques {
         linechart.getData().add(series);
     }
 
+    /**
+     * Sert a faire un linechart du nombre de seisme par intensite epicentrale
+     * @param linechart LineChart defini dans le FXML
+     * @param xAxis defini dans le FXML
+     * @param donnees liste de Seisme qui peut etre triee
+     */
     public static void nbSeismesParIntensite(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
@@ -71,6 +77,13 @@ public class Statistiques {
         series.getData().add(new XYChart.Data(intensitePrecedente, cpt));
         linechart.getData().add(series);
     }
+
+    /**
+     * Sert a faire un linechart de la moyenne des intensites des seismes par an
+     * @param linechart LineChart defini dans le FXML
+     * @param xAxis defini dans le FXML
+     * @param donnees liste de Seisme qui peut etre triee
+     */
     public static void moyIntensiteParAn(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
@@ -101,7 +114,14 @@ public class Statistiques {
         linechart.getData().add(series);
     }
 
-    public static void moyIntensiteParRegion(LineChart linechart, CategoryAxis xAxys, List<Seisme> donnees){
+    /**
+     * Sert a faire un linechart de la moyenne des intensites des seismes par region. Il y a un bug a l'affichage de l'axe x,
+     * il faut re cliquer sur rechercher ou bien faire la recherche sans etre dans l'onglet statistique.
+     * @param linechart LineChart defini dans le FXML
+     * @param xAxis defini dans le FXML
+     * @param donnees liste de Seisme qui peut etre triee
+     */
+    public static void moyIntensiteParRegion(LineChart linechart, CategoryAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
         donnees.sort(Comparator.comparing(Seisme::getRegionEpicentrale));

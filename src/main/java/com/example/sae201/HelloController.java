@@ -29,6 +29,9 @@ import  static com.example.sae201.OuvertureJava2.lesSeismes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Sert a interagir avec les differents elements tels que les boutons ou les textField
+ */
 public class HelloController {
 
     @FXML
@@ -58,32 +61,8 @@ public class HelloController {
     @FXML
     private MapPoint mapPoint;
 
-    //Initialisation de la map (appelée automatiquement)
-    @FXML
-    public void initialize() {
 
-        //Initialisation de la MapView
-        this.mapView = new MapView();
 
-        /* Création du point avec latitude et longitude */
-        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
-
-        /* Création et ajoute une couche à la carte */
-        MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-        mapView.addLayer(mapLayer);
-
-        /* Zoom de 5 */
-        mapView.setZoom(6);
-
-        /* Centre la carte sur le point */
-        mapView.flyTo(0, mapPoint, 1);
-
-        //on enleve le point qui centre la map sur la France
-        mapView.removeLayer(mapLayer);
-
-        /* Ajout de la map au container de la map (une Vbox) */
-        carteContainer.getChildren().add(mapView);
-    }
 
     // Pour les graphiques
     @FXML
@@ -127,23 +106,66 @@ public class HelloController {
 
     private List<MapLayer> pointLayers = new ArrayList<>();
 
+    /**
+     * Fonction d'initialisation de la carte qui la centre au centre de la France
+     */
+    @FXML
+    public void initialize() {
+
+        //Initialisation de la MapView
+        this.mapView = new MapView();
+
+        /* Création du point avec latitude et longitude */
+        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
+
+        /* Création et ajoute une couche à la carte */
+        MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+        mapView.addLayer(mapLayer);
+
+        /* Zoom de 5 */
+        mapView.setZoom(6);
+
+        /* Centre la carte sur le point */
+        mapView.flyTo(0, mapPoint, 1);
+
+        //on enleve le point qui centre la map sur la France
+        mapView.removeLayer(mapLayer);
+
+        /* Ajout de la map au container de la map (une Vbox) */
+        carteContainer.getChildren().add(mapView);
+    }
+
+    /**
+     * Sert a afficher la carte dans la partie center du BorderPane
+     */
     @FXML
     protected void handleCarte() {
         fenetre.setCenter(mapView);
 
     }
 
+    /**
+     * Sert a afficher les graphiques dans la partie center du BorderPane
+     */
     @FXML
     protected void handleStats() {
         fenetre.setCenter(graphiques);
 
     }
 
+    /**
+     * Sert a afficher le tableau dans la partie center du BorderPane
+     */
     @FXML
     protected void handleTableau() {
         fenetre.setCenter(tableView);
     }
 
+    /**
+     * Sert a creer les points qui correspondent aux seismes
+     * @param listRecherche liste de Seismes
+     * @return la liste des points qui devrons etre ajoutes sur la carte
+     */
     public static List<MapPoint> creationPointRecherche(List<Seisme> ListRecherche) {
         List<MapPoint> listMapPoint = new ArrayList<>();
         for (Seisme seisme : ListRecherche) {
@@ -155,6 +177,9 @@ public class HelloController {
         return listMapPoint;
     }
 
+    /**
+     * Sert a gerer le bouton de recherche, applique les filtres, prepare le tableau, les statistiques et la carte
+     */
     @FXML
     protected void handleRechercher() {
         ListSeisme tri;
@@ -163,7 +188,7 @@ public class HelloController {
         } else {
             tri = lesSeismes.filtrerParId(Integer.parseInt(id.getText()));
         }
-
+é
         tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
         tri = tri.filtrerParDate(date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
@@ -206,6 +231,10 @@ public class HelloController {
 
 
 
+    /**
+     * Sert a gerer l'importation d'un CSV de l'utilisateur. Le CSV doit avoir la meme structure que celui par defaut.
+     * @param event clic sur le bouton Importer CSV
+     */
     @FXML
     public void handleCsv(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
