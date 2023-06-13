@@ -38,6 +38,34 @@ public class Statistiques {
             datePrecedente = donnees.get(i).getDate();
         }
         linechart.getData().add(series);
+    }
+
+    public static void nbSeismesParIntensite(LineChart linechart, NumberAxis xAxis, NumberAxis yAxis, List<Seisme> donnees){
+        linechart.getData().clear();
+        // Tri de la liste en fonction de la date
+        donnees.sort(Comparator.comparing(Seisme::getIntensiteEpicentrale));
+        // Creation des axes du linechart (Axe X = annees, axe Y = nb de seisme)
+        xAxis.setLowerBound(donnees.get(0).getIntensiteEpicentrale() -1);
+        xAxis.setUpperBound(donnees.get(donnees.size()-1).getIntensiteEpicentrale() +1);
+        yAxis.setLabel("Nombre de seisme");
+
+        XYChart.Series series = new XYChart.Series();
+        series.setName("Nombre de seisme par intensite");
+
+        LocalDate datePrecedente = donnees.get(0).getDate();
+        Float intensitePrecedente = donnees.get(0).getIntensiteEpicentrale();
+        int cpt = 0;
+        for (int i =1; i<donnees.size(); ++i){         // Compter le nombre de seisme par an
+            if (donnees.get(i).getIntensiteEpicentrale() == intensitePrecedente){
+                cpt ++;
+            }
+            else {
+                series.getData().add(new XYChart.Data(intensitePrecedente, cpt));      //Ajouter les donnees dans un graphique
+                cpt = 0;
+            }
+            intensitePrecedente = donnees.get(i).getIntensiteEpicentrale();
+        }
+        linechart.getData().add(series);
 
 
 
