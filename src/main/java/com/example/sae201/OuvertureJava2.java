@@ -18,6 +18,7 @@ import java.util.List;
 public class OuvertureJava2 {
 
     static List<Seisme> lSeismes = new ArrayList<>();
+    static ListSeisme lesSeismes;
     private static final String SAMPLE_CSV_FILE_PATH = "src/main/resources/SisFrance_seismes_20230605113030.csv";
     public static void main(String absolutePath) throws IOException {
         try (
@@ -77,8 +78,10 @@ public class OuvertureJava2 {
                 lSeismes.add(aAjouter);
             }
 
-        }
+            //création de la liste de séismes
+            lesSeismes = new ListSeisme(lSeismes);
 
+        }
     }
     public static LocalDate formatDate(String dateFromString)  {
         LocalDate date = null;

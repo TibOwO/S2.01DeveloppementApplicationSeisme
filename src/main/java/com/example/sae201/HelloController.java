@@ -23,7 +23,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import static com.example.sae201.OuvertureJava2.lSeismes;
+import  static com.example.sae201.OuvertureJava2.lesSeismes;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class HelloController {
 
@@ -47,7 +49,6 @@ public class HelloController {
     private MapView carte;
 
 
-
     @FXML
     private VBox carteContainer;
 
@@ -69,7 +70,7 @@ public class HelloController {
 
         /* Création et ajoute une couche à la carte */
         MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-       mapView.addLayer(mapLayer);
+        mapView.addLayer(mapLayer);
 
         /* Zoom de 5 */
         mapView.setZoom(6);
@@ -80,7 +81,7 @@ public class HelloController {
         //on enleve le point qui centre la map sur la France
         mapView.removeLayer(mapLayer);
 
-         /* Ajout de la map au container de la map (une Vbox) */
+        /* Ajout de la map au container de la map (une Vbox) */
         carteContainer.getChildren().add(mapView);
     }
 
@@ -94,59 +95,40 @@ public class HelloController {
     private NumberAxis nbSeismeParAnAxeY;
 
     @FXML
-    protected void handleCarte(){
+    protected void handleCarte() {
         fenetre.setCenter(mapView);
 
     }
 
     @FXML
-    protected void handleStats(){
+    protected void handleStats() {
         fenetre.setCenter(graphiques);
 
     }
 
     @FXML
-    protected void handleTableau(){
+    protected void handleTableau() {
         fenetre.setCenter(tableView);
     }
+
+
     @FXML
     protected void handleRechercher() {
-        List<Seisme> tri;
-        if (id.getText() == "" || id.getText().isEmpty()){
-            tri = lSeismes;
+        ListSeisme tri;
+        if (id.getText() == "" || id.getText().isEmpty()) {
+            tri = new ListSeisme(lesSeismes.getSeismeList());
+        } else {
+            tri = lesSeismes.filtrerParId(Integer.parseInt(id.getText()));
         }
-        else{
-            tri = filtrerParId(lSeismes, Integer.parseInt(id.getText()));
-        }
 
-        tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
-        tri = filtrerParDate(tri, date.getText());
-        tableView.setItems(FXCollections.observableArrayList(tri));
-        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri);
+        tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
+        tri = tri.filtrerParDate(date.getText());
+        tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri.getSeismeList());
     }
 
-    public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
-
-    public static List<Seisme> filtrerParId(List<Seisme> liste, int aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
-
-    public static List<Seisme> filtrerParDate(List<Seisme> liste, String aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.dateProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
     @FXML
-    public void handleCsv (ActionEvent event) {
+    public void handleCsv(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Sélectionner un fichier CSV");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers CSV", "*.csv"));
@@ -157,13 +139,13 @@ public class HelloController {
         if (selectedFile != null) {
             // Utiliser le fichier sélectionné / vider l'ancienne liste
             System.out.println("Fichier sélectionné : " + selectedFile.getAbsolutePath());
-            lSeismes.clear();
+            lesSeismes.getSeismeList().clear();
             // Appeler la méthode pour lire le fichier CSV et effectuer le traitement nécessaire
             try {
                 OuvertureJava2.main(selectedFile.getAbsolutePath());
 
                 // Mettre à jour l'affichage dans le tableau
-                tableView.setItems(FXCollections.observableArrayList(lSeismes));
+                tableView.setItems(FXCollections.observableArrayList(lesSeismes.getSeismeList()));
 
                 // Effectuer d'autres actions si nécessaire
             } catch (IOException e) {
@@ -172,4 +154,6 @@ public class HelloController {
             }
         }
     }
+
+
 }
