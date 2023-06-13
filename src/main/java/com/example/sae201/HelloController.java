@@ -102,7 +102,7 @@ public class HelloController {
     @FXML
     protected void handleStats(){
         fenetre.setCenter(graphiques);
-        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY);
+
     }
 
     @FXML
@@ -122,6 +122,7 @@ public class HelloController {
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
         tri = filtrerParDate(tri, date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri));
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri);
     }
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {

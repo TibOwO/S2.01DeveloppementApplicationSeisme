@@ -102,10 +102,10 @@
         <GridPane fx:id="graphiques">
             <LineChart fx:id="nbSeismeParAn">
                 <xAxis>
-                    <NumberAxis fx:id="nbSeismeParAnAxeX" side="BOTTOM" lowerBound="400" upperBound="2025" label="Annee"/>
+                    <NumberAxis fx:id="nbSeismeParAnAxeX" side="BOTTOM" label="Annee" autoRanging="false"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis fx:id="nbSeismeParAnAxeY" lowerBound="0" upperBound="20" label="Nombre de seismes"/>
+                    <NumberAxis fx:id="nbSeismeParAnAxeY" label="Nombre de seismes" autoRanging="false"/>
                 </yAxis>
             </LineChart>
         </GridPane>
