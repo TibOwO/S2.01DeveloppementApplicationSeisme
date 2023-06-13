@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
@@ -36,6 +37,9 @@ public class HelloController {
 
     @FXML
     private BorderPane fenetre;
+
+    @FXML
+    private Label labelImportCSV;
     @FXML
     private TableView<Seisme> tableView;
 
@@ -247,6 +251,7 @@ public class HelloController {
         if (selectedFile != null) {
             // Utiliser le fichier sélectionné / vider l'ancienne liste
             System.out.println("Fichier sélectionné : " + selectedFile.getAbsolutePath());
+            labelImportCSV.setText(selectedFile.getName());
             lesSeismes.getSeismeList().clear();
             // Appeler la méthode pour lire le fichier CSV et effectuer le traitement nécessaire
             try {

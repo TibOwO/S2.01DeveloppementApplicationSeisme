@@ -31,6 +31,7 @@
                 <Button text="Carte" onAction="#handleCarte"/>
                 <Button text="Statistiques" onAction="#handleStats"/>
                 <Button text="Importer un fichier CSV" onAction="#handleCsv"/>
+                <Label  fx:id="labelImportCSV" text="Fichier par defaut" maxWidth="140" alignment="CENTER"/>
             </VBox>
         </HBox>
     </left>
