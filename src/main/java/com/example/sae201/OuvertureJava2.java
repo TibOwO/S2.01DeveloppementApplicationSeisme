@@ -15,11 +15,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Sert a importer le CSV et a le mettre dans une liste
+ */
 public class OuvertureJava2 {
 
     static List<Seisme> lSeismes = new ArrayList<>();
     static ListSeisme lesSeismes;
     private static final String SAMPLE_CSV_FILE_PATH = "src/main/resources/SisFrance_seismes_20230605113030.csv";
+
+    /**
+     * Sert uniquement pour importer directement un fichier avec le bouton
+     * @param absolutePath chemin absolu du fichier a ajouter
+     * @throws IOException
+     */
     public static void main(String absolutePath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(
@@ -50,6 +59,10 @@ public class OuvertureJava2 {
         }
     }
 
+    /**
+     * Sert a importer le fichier par defaut
+     * @throws IOException
+     */
     public static void main() throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(
@@ -83,6 +96,12 @@ public class OuvertureJava2 {
 
         }
     }
+
+    /**
+     * Sert a transformer la date en String en LocalDate
+     * @param dateFromString
+     * @return date en LocalDate
+     */
     public static LocalDate formatDate(String dateFromString)  {
         LocalDate date = null;
         List<String> sepAnneeMoisJour = new ArrayList<String>(Arrays.asList(dateFromString.split("/")));
