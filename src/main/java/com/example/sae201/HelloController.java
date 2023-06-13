@@ -1,6 +1,7 @@
 package com.example.sae201;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextField;
@@ -65,6 +66,15 @@ public class HelloController {
     private NumberAxis moyIntensiteParAnAxeY;
 
     @FXML
+    private LineChart moyIntensiteParRegion;
+
+    @FXML
+    private CategoryAxis moyIntensiteParRegionAxeX;
+
+    @FXML
+    private NumberAxis moyIntensiteParRegionAxeY;
+
+    @FXML
     protected void handleCarte(){
         fenetre.setCenter(carte);
     }
@@ -91,10 +101,13 @@ public class HelloController {
 
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
         tri = filtrerParDate(tri, date.getText());
+        // Remplissage du tableau en fonction de la recherche
         tableView.setItems(FXCollections.observableArrayList(tri));
-        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri);
-        Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, nbSeismeParIntensiteAxeY, tri);
-        Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, moyIntensiteParAnAxeY, tri);
+        // Creation des graphiques en fonction de la recherche
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, tri);
+        Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, tri);
+        Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, tri);
+        Statistiques.moyIntensiteParRegion(moyIntensiteParRegion, moyIntensiteParRegionAxeX, tri);
     }
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {

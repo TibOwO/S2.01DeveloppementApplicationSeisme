@@ -1,19 +1,17 @@
 package com.example.sae201;
 
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.example.sae201.OuvertureJava2.lSeismes;
-
 public class Statistiques {
 
-    public static void nbSeismesParAn(LineChart linechart, NumberAxis xAxis, NumberAxis yAxis, List<Seisme> donnees){
+    public static void nbSeismesParAn(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
         donnees.sort(Comparator.comparing(Seisme::getDate));
@@ -36,10 +34,11 @@ public class Statistiques {
             }
             datePrecedente = donnees.get(i).getDate();
         }
+        series.getData().add(new XYChart.Data(datePrecedente.getYear(), cpt));
         linechart.getData().add(series);
     }
 
-    public static void nbSeismesParIntensite(LineChart linechart, NumberAxis xAxis, NumberAxis yAxis, List<Seisme> donnees){
+    public static void nbSeismesParIntensite(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
         donnees.sort(Comparator.comparing(Seisme::getIntensiteEpicentrale));
@@ -63,9 +62,10 @@ public class Statistiques {
             }
             intensitePrecedente = donnees.get(i).getIntensiteEpicentrale();
         }
+        series.getData().add(new XYChart.Data(intensitePrecedente, cpt));
         linechart.getData().add(series);
     }
-    public static void moyIntensiteParAn(LineChart linechart, NumberAxis xAxis, NumberAxis yAxis, List<Seisme> donnees){
+    public static void moyIntensiteParAn(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
         donnees.sort(Comparator.comparing(Seisme::getDate));
@@ -74,7 +74,7 @@ public class Statistiques {
         xAxis.setUpperBound(donnees.get(donnees.size()-1).getDate().getYear() +10);
 
         XYChart.Series series = new XYChart.Series();
-        series.setName("Nombre de seisme par an");
+        series.setName("Moyenne de l'intensite des seismes par an");
 
         LocalDate datePrecedente = donnees.get(0).getDate();
         int cpt = 1;
@@ -91,6 +91,39 @@ public class Statistiques {
             }
             datePrecedente = donnees.get(i).getDate();
         }
+        series.getData().add(new XYChart.Data(datePrecedente.getYear(), somme/cpt));
+        linechart.getData().add(series);
+    }
+
+    public static void moyIntensiteParRegion(LineChart linechart, CategoryAxis xAxys, List<Seisme> donnees){
+        linechart.getData().clear();
+        // Tri de la liste en fonction de la date
+        donnees.sort(Comparator.comparing(Seisme::getRegionEpicentrale));
+        // Creation des axes du linechart (Axe X = annees, axe Y = moyenne du nb de seisme)
+        //xAxis.setCategorySpacing();
+
+
+        XYChart.Series series = new XYChart.Series();
+        series.setName("Moyenne de l'intensite des seismes par region");
+
+        String regionPrecedente = donnees.get(0).getRegionEpicentrale();
+        int cpt = 1;
+        float somme = 0;
+        for (int i =1; i<donnees.size(); ++i){         // On parcourt les donnees
+            System.out.println(donnees.get(i).getRegionEpicentrale() + " =?= " + regionPrecedente);
+            if (donnees.get(i).getRegionEpicentrale().equals(regionPrecedente) ){
+                cpt ++;
+                somme += donnees.get(i).getIntensiteEpicentrale(); // Somme toutes les intensites d'une region
+            }
+            else {
+                System.out.println("Region : "+ regionPrecedente + " : " + somme + "/" + cpt + " = " + somme/cpt);
+                series.getData().add(new XYChart.Data(regionPrecedente, somme/cpt));      //Ajouter les donnees dans un graphique
+                cpt = 1;
+                somme = 0;
+            }
+            regionPrecedente = donnees.get(i).getRegionEpicentrale();
+        }
+        series.getData().add(new XYChart.Data(regionPrecedente, somme/cpt));        // On ajoute le dernier
         linechart.getData().add(series);
     }
 }
