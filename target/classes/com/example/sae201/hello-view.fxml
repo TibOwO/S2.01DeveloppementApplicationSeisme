@@ -19,7 +19,7 @@
             <HBox alignment="CENTER" minHeight="50">
                 <TextField fx:id="id" promptText="ID" />
                 <TextField fx:id="intensiteEpicentrale" promptText="Intensite epicentrale" />
-                <TextField fx:id="date" promptText="Date (aaaa/mm/jj)" />
+                <TextField fx:id="date" promptText="Date (aaaa-mm-jj)" />
                 <Button onAction="#handleRechercher" text="Rechercher" />
             </HBox>
         </VBox>

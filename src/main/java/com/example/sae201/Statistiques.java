@@ -11,6 +11,12 @@ import java.util.List;
 
 public class Statistiques {
 
+    /**
+     *
+     * @param linechart LineChart defini dans le FXML
+     * @param xAxis defini dans le FXML
+     * @param donnees
+     */
     public static void nbSeismesParAn(LineChart linechart, NumberAxis xAxis, List<Seisme> donnees){
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
@@ -110,14 +116,11 @@ public class Statistiques {
         int cpt = 1;
         float somme = 0;
         for (int i =1; i<donnees.size(); ++i){         // On parcourt les donnees
-            System.out.println(donnees.get(i).getRegionEpicentrale() + " =?= " + regionPrecedente);
             if (donnees.get(i).getRegionEpicentrale().equals(regionPrecedente) ){
                 cpt ++;
                 somme += donnees.get(i).getIntensiteEpicentrale(); // Somme toutes les intensites d'une region
             }
-            else {
-                System.out.println("Region : "+ regionPrecedente + " : " + somme + "/" + cpt + " = " + somme/cpt);
-                series.getData().add(new XYChart.Data(regionPrecedente, somme/cpt));      //Ajouter les donnees dans un graphique
+            else {series.getData().add(new XYChart.Data(regionPrecedente, somme/cpt));      //Ajouter les donnees dans un graphique
                 cpt = 1;
                 somme = 0;
             }

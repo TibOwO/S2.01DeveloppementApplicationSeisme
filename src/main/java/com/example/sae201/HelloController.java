@@ -22,6 +22,7 @@ import com.gluonhq.maps.MapView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import  static com.example.sae201.OuvertureJava2.lesSeismes;
@@ -141,6 +142,16 @@ public class HelloController {
         fenetre.setCenter(tableView);
     }
 
+    public static List<MapPoint> creationPointRecherche(List<Seisme> listRecherche) {
+        List<MapPoint> listMapPoint = new ArrayList<>();
+        for (Seisme seisme : listRecherche) {
+            Double lat = seisme.getLatitude();
+            Double lon = seisme.getLongitude();
+            MapPoint mapPoint = new MapPoint(lat, lon);
+            listMapPoint.add(mapPoint);
+        }
+        return listMapPoint;
+    }
 
     @FXML
     protected void handleRechercher() {
@@ -149,6 +160,12 @@ public class HelloController {
             tri = new ListSeisme(lesSeismes.getSeismeList());
         } else {
             tri = lesSeismes.filtrerParId(Integer.parseInt(id.getText()));
+        }
+
+        List<MapPoint> listMapPoint = creationPointRecherche(tri.getSeismeList());
+        for (MapPoint mapPoint : listMapPoint) {
+            MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+            mapView.addLayer(mapLayer);
         }
 
         tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
