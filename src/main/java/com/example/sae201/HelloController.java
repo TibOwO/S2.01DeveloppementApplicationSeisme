@@ -154,32 +154,15 @@ public class HelloController {
         tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
         tri = tri.filtrerParDate(date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
-        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri.getSeismeList());
-    }
-
-        tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
-        tri = filtrerParDate(tri, date.getText());
         // Remplissage du tableau en fonction de la recherche
-        tableView.setItems(FXCollections.observableArrayList(tri));
+        tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
         // Creation des graphiques en fonction de la recherche
-        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, tri);
-        Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, tri);
-        Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, tri);
-        Statistiques.moyIntensiteParRegion(moyIntensiteParRegion, moyIntensiteParRegionAxeX, tri);
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, tri.getSeismeList());
+        Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, tri.getSeismeList());
+        Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, tri.getSeismeList());
+        Statistiques.moyIntensiteParRegion(moyIntensiteParRegion, moyIntensiteParRegionAxeX, tri.getSeismeList());
     }
 
-    public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
-                .collect(Collectors.toList());
-        return filteredList;
-    }
-
-    public static List<Seisme> filtrerParId(List<Seisme> liste, int aGarder) {
-        List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
-                .collect(Collectors.toList());
-        return filteredList;
     @FXML
     public void handleCsv(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
