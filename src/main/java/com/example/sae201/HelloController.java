@@ -125,6 +125,8 @@ public class HelloController {
     @FXML
     private NumberAxis moyIntensiteParRegionAxeY;
 
+    private List<MapLayer> pointLayers = new ArrayList<>();
+
     @FXML
     protected void handleCarte() {
         fenetre.setCenter(mapView);
@@ -142,9 +144,9 @@ public class HelloController {
         fenetre.setCenter(tableView);
     }
 
-    public static List<MapPoint> creationPointRecherche(List<Seisme> listRecherche) {
+    public static List<MapPoint> creationPointRecherche(List<Seisme> ListRecherche) {
         List<MapPoint> listMapPoint = new ArrayList<>();
-        for (Seisme seisme : listRecherche) {
+        for (Seisme seisme : ListRecherche) {
             Double lat = seisme.getLatitude();
             Double lon = seisme.getLongitude();
             MapPoint mapPoint = new MapPoint(lat, lon);
@@ -162,12 +164,6 @@ public class HelloController {
             tri = lesSeismes.filtrerParId(Integer.parseInt(id.getText()));
         }
 
-        List<MapPoint> listMapPoint = creationPointRecherche(tri.getSeismeList());
-        for (MapPoint mapPoint : listMapPoint) {
-            MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-            mapView.addLayer(mapLayer);
-        }
-
         tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
         tri = tri.filtrerParDate(date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
@@ -178,7 +174,37 @@ public class HelloController {
         Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, tri.getSeismeList());
         Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, tri.getSeismeList());
         Statistiques.moyIntensiteParRegion(moyIntensiteParRegion, moyIntensiteParRegionAxeX, tri.getSeismeList());
+
+
+
+        List<MapPoint> listMapPoint = creationPointRecherche(tri.getSeismeList());
+        clearFirstLayer();
+        updateMapWithPoints(listMapPoint);
     }
+
+    public void clearFirstLayer() {
+        if (!pointLayers.isEmpty()) {
+            mapView.removeLayer(pointLayers.get(0));
+            pointLayers.remove(0);
+        }
+    }
+
+    public void updateMapWithPoints(List<MapPoint> listMapPoint) {
+        // Supprimer les anciens points de la carte
+        for (MapLayer layer : pointLayers) {
+            mapView.removeLayer(layer);
+        }
+        pointLayers.clear();
+
+        // Ajouter les nouveaux points
+        for (MapPoint mapPoint : listMapPoint) {
+            MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+            mapView.addLayer(mapLayer);
+            pointLayers.add(mapLayer);
+        }
+    }
+
+
 
     @FXML
     public void handleCsv(ActionEvent event) {
