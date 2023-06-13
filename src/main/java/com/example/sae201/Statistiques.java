@@ -1,9 +1,6 @@
 package com.example.sae201;
 
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -125,9 +122,6 @@ public class Statistiques {
         linechart.getData().clear();
         // Tri de la liste en fonction de la date
         donnees.sort(Comparator.comparing(Seisme::getRegionEpicentrale));
-        // Creation des axes du linechart (Axe X = annees, axe Y = moyenne du nb de seisme)
-        //xAxis.setCategorySpacing();
-
 
         XYChart.Series series = new XYChart.Series();
         series.setName("Moyenne de l'intensite des seismes par region");
@@ -148,5 +142,27 @@ public class Statistiques {
         }
         series.getData().add(new XYChart.Data(regionPrecedente, somme/cpt));        // On ajoute le dernier
         linechart.getData().add(series);
+    }
+
+    public static void classementRegionsSysmiques(PieChart pieChart, List<Seisme> donnees){
+        pieChart.getData().clear();
+        // Tri de la liste en fonction de la date
+        donnees.sort(Comparator.comparing(Seisme::getRegionEpicentrale));
+
+        String regionPrecedente = donnees.get(0).getRegionEpicentrale();
+        int cpt = 1;
+        for (int i =1; i<donnees.size(); ++i){         // On parcourt les donnees
+            if (donnees.get(i).getRegionEpicentrale().equals(regionPrecedente) ){
+                cpt ++;
+            }
+            else {
+                PieChart.Data nbSeismeParRegion = new PieChart.Data(regionPrecedente, cpt);
+                pieChart.getData().add(nbSeismeParRegion);
+                cpt = 1;
+            }
+            regionPrecedente = donnees.get(i).getRegionEpicentrale();
+        }
+        PieChart.Data nbSeismeParRegion = new PieChart.Data(regionPrecedente, cpt);
+        pieChart.getData().add(nbSeismeParRegion);
     }
 }

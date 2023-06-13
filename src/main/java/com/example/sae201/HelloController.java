@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
@@ -65,9 +66,6 @@ public class HelloController {
     @FXML
     private MapPoint mapPoint;
 
-
-
-
     // Pour les graphiques
     @FXML
     private GridPane graphiques;
@@ -107,6 +105,9 @@ public class HelloController {
 
     @FXML
     private NumberAxis moyIntensiteParRegionAxeY;
+
+    @FXML
+    private PieChart classementRegionsSysmiques;
 
     private List<MapLayer> pointLayers = new ArrayList<>();
 
@@ -203,7 +204,7 @@ public class HelloController {
         Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, tri.getSeismeList());
         Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, tri.getSeismeList());
         Statistiques.moyIntensiteParRegion(moyIntensiteParRegion, moyIntensiteParRegionAxeX, tri.getSeismeList());
-
+        Statistiques.classementRegionsSysmiques(classementRegionsSysmiques, tri.getSeismeList());
 
 
         List<MapPoint> listMapPoint = creationPointRecherche(tri.getSeismeList());

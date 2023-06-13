@@ -13,6 +13,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" fx:id="fenetre" >
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
@@ -125,7 +126,7 @@
                     <NumberAxis fx:id="moyIntensiteParAnAxeY" label="Moyenne de l'intensite des seismes"/>
                 </yAxis>
             </LineChart>
-            <LineChart fx:id="moyIntensiteParRegion" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <LineChart fx:id="moyIntensiteParRegion" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <xAxis>
                     <CategoryAxis fx:id="moyIntensiteParRegionAxeX" side="BOTTOM" label="Region"/>
                 </xAxis>
@@ -133,6 +134,7 @@
                     <NumberAxis fx:id="moyIntensiteParRegionAxeY" label="Moyenne de l'intensite des seismes"/>
                 </yAxis>
             </LineChart>
+            <PieChart fx:id="classementRegionsSysmiques" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
 
         </GridPane>
         <VBox fx:id="carteContainer"/>
