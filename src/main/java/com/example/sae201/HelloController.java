@@ -4,6 +4,7 @@ import com.gluonhq.maps.MapLayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextField;
@@ -42,8 +43,6 @@ public class HelloController {
     @FXML
     private TextField date;
 
-    @FXML
-    private GridPane graphiques;
 
     @FXML
     private MapView carte;
@@ -85,6 +84,10 @@ public class HelloController {
         carteContainer.getChildren().add(mapView);
     }
 
+    // Pour les graphiques
+    @FXML
+    private GridPane graphiques;
+
     @FXML
     private LineChart nbSeismeParAn;
 
@@ -93,6 +96,33 @@ public class HelloController {
 
     @FXML
     private NumberAxis nbSeismeParAnAxeY;
+
+    @FXML
+    private LineChart nbSeismeParIntensite;
+
+    @FXML
+    private NumberAxis nbSeismeParIntensiteAxeX;
+
+    @FXML
+    private NumberAxis nbSeismeParIntensiteAxeY;
+
+    @FXML
+    private LineChart moyIntensiteParAn;
+
+    @FXML
+    private NumberAxis moyIntensiteParAnAxeX;
+
+    @FXML
+    private NumberAxis moyIntensiteParAnAxeY;
+
+    @FXML
+    private LineChart moyIntensiteParRegion;
+
+    @FXML
+    private CategoryAxis moyIntensiteParRegionAxeX;
+
+    @FXML
+    private NumberAxis moyIntensiteParRegionAxeY;
 
     @FXML
     protected void handleCarte() {
@@ -127,6 +157,29 @@ public class HelloController {
         Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri.getSeismeList());
     }
 
+        tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
+        tri = filtrerParDate(tri, date.getText());
+        // Remplissage du tableau en fonction de la recherche
+        tableView.setItems(FXCollections.observableArrayList(tri));
+        // Creation des graphiques en fonction de la recherche
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, tri);
+        Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, tri);
+        Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, tri);
+        Statistiques.moyIntensiteParRegion(moyIntensiteParRegion, moyIntensiteParRegionAxeX, tri);
+    }
+
+    public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
+        List<Seisme> filteredList = liste.stream()
+                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
+                .collect(Collectors.toList());
+        return filteredList;
+    }
+
+    public static List<Seisme> filtrerParId(List<Seisme> liste, int aGarder) {
+        List<Seisme> filteredList = liste.stream()
+                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
+                .collect(Collectors.toList());
+        return filteredList;
     @FXML
     public void handleCsv(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();

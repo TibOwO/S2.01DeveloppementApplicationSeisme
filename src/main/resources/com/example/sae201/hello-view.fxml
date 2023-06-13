@@ -100,14 +100,39 @@
             </columns>
         </TableView>
         <GridPane fx:id="graphiques">
-            <LineChart fx:id="nbSeismeParAn">
+            <LineChart fx:id="nbSeismeParAn" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <xAxis>
                     <NumberAxis fx:id="nbSeismeParAnAxeX" side="BOTTOM" label="Annee" autoRanging="false"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis fx:id="nbSeismeParAnAxeY" label="Nombre de seismes" autoRanging="false"/>
+                    <NumberAxis fx:id="nbSeismeParAnAxeY" label="Nombre de seismes"/>
                 </yAxis>
             </LineChart>
+            <LineChart fx:id="nbSeismeParIntensite" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <xAxis>
+                    <NumberAxis fx:id="nbSeismeParIntensiteAxeX" side="BOTTOM" label="Intensité Epicentrale" autoRanging="false"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="nbSeismeParIntensiteAxeY" label="Nombre de seismes"/>
+                </yAxis>
+            </LineChart>
+            <LineChart fx:id="moyIntensiteParAn" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <xAxis>
+                    <NumberAxis fx:id="moyIntensiteParAnAxeX" side="BOTTOM" label="Annee" autoRanging="false"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="moyIntensiteParAnAxeY" label="Moyenne de l'intensite des seismes"/>
+                </yAxis>
+            </LineChart>
+            <LineChart fx:id="moyIntensiteParRegion" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <xAxis>
+                    <CategoryAxis fx:id="moyIntensiteParRegionAxeX" side="BOTTOM" label="Region"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="moyIntensiteParRegionAxeY" label="Moyenne de l'intensite des seismes"/>
+                </yAxis>
+            </LineChart>
+
         </GridPane>
         <VBox fx:id="carteContainer"/>
     </center>
