@@ -7,7 +7,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import com.gluonhq.maps.MapView?>
 
-<BorderPane fx:id="fenetre" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae201.HelloController">
+<?import org.controlsfx.control.GridCell?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sae201.HelloController" fx:id="fenetre" >
     <top>
         <VBox style="-fx-background-color: #5e6ae5;">
             <HBox alignment="CENTER" minHeight="50">
@@ -19,12 +25,12 @@
         </VBox>
     </top>
     <left>
-        <HBox spacing="10" style="-fx-background-color: #989fe9;">
-            <VBox alignment="TOP_CENTER" spacing="20">
-                <Button onAction="#handleTableau" text="Tableau" />
-                <Button onAction="#handleCarte" text="Carte" />
-                <Button onAction="#handleStats" text="Statistiques" />
-                <Button onAction="#handleCsv" text="Importer un fichier CSV" />
+        <HBox spacing="10" style="-fx-background-color: #989fe9;" >
+            <VBox alignment="TOP_CENTER" spacing="20" >
+                <Button text="Tableau" onAction="#handleTableau"/>
+                <Button text="Carte" onAction="#handleCarte"/>
+                <Button text="Statistiques" onAction="#handleStats"/>
+                <Button text="Importer un fichier CSV"/>
             </VBox>
         </HBox>
     </left>
@@ -94,7 +100,14 @@
             </columns>
         </TableView>
         <GridPane fx:id="graphiques">
-            <Label text="Ici les graphiques" />
+            <LineChart fx:id="nbSeismeParAn">
+                <xAxis>
+                    <NumberAxis fx:id="nbSeismeParAnAxeX" side="BOTTOM" lowerBound="400" upperBound="2025" label="Annee"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="nbSeismeParAnAxeY" lowerBound="0" upperBound="20" label="Nombre de seismes"/>
+                </yAxis>
+            </LineChart>
         </GridPane>
         <VBox fx:id="carteContainer"/>
     </center>

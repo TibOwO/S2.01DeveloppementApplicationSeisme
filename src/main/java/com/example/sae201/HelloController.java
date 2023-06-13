@@ -4,6 +4,8 @@ import com.gluonhq.maps.MapLayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
@@ -40,7 +42,7 @@ public class HelloController {
 
     @FXML
     private GridPane graphiques;
-    
+
     @FXML
     private MapView carte;
 
@@ -49,7 +51,7 @@ public class HelloController {
     @FXML
     private VBox carteContainer;
 
-    @FXML 
+    @FXML
     private MapView mapView;
 
     @FXML
@@ -83,6 +85,15 @@ public class HelloController {
     }
 
     @FXML
+    private LineChart nbSeismeParAn;
+
+    @FXML
+    private NumberAxis nbSeismeParAnAxeX;
+
+    @FXML
+    private NumberAxis nbSeismeParAnAxeY;
+
+    @FXML
     protected void handleCarte(){
         fenetre.setCenter(mapView);
 
@@ -91,6 +102,7 @@ public class HelloController {
     @FXML
     protected void handleStats(){
         fenetre.setCenter(graphiques);
+        Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY);
     }
 
     @FXML
@@ -99,7 +111,14 @@ public class HelloController {
     }
     @FXML
     protected void handleRechercher() {
-        List<Seisme> tri = filtrerParId(lSeismes, id.getText());
+        List<Seisme> tri;
+        if (id.getText() == "" || id.getText().isEmpty()){
+            tri = lSeismes;
+        }
+        else{
+            tri = filtrerParId(lSeismes, Integer.parseInt(id.getText()));
+        }
+
         tri = filtrerParIntensiteEpicentrale(tri, intensiteEpicentrale.getText());
         tri = filtrerParDate(tri, date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri));
@@ -107,21 +126,21 @@ public class HelloController {
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.intensiteEpicentraleProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.intensiteEpicentraleProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
 
-    public static List<Seisme> filtrerParId(List<Seisme> liste, String aGarder) {
+    public static List<Seisme> filtrerParId(List<Seisme> liste, int aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.idProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.idProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
 
     public static List<Seisme> filtrerParDate(List<Seisme> liste, String aGarder) {
         List<Seisme> filteredList = liste.stream()
-                .filter(entry -> entry.dateProperty().get().startsWith(aGarder))
+                .filter(entry -> entry.dateProperty().getValue().toString().startsWith(String.valueOf(aGarder)))
                 .collect(Collectors.toList());
         return filteredList;
     }
