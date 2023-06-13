@@ -163,7 +163,7 @@ public class HelloController {
 
     /**
      * Sert a creer les points qui correspondent aux seismes
-     * @param listRecherche liste de Seismes
+     * @param ListRecherche liste de Seismes
      * @return la liste des points qui devrons etre ajoutes sur la carte
      */
     public static List<MapPoint> creationPointRecherche(List<Seisme> ListRecherche) {
@@ -188,7 +188,7 @@ public class HelloController {
         } else {
             tri = lesSeismes.filtrerParId(Integer.parseInt(id.getText()));
         }
-é
+
         tri = tri.filtrerParIntensiteEpicentrale(intensiteEpicentrale.getText());
         tri = tri.filtrerParDate(date.getText());
         tableView.setItems(FXCollections.observableArrayList(tri.getSeismeList()));
