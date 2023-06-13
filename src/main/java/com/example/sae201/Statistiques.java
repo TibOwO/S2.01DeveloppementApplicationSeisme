@@ -144,6 +144,11 @@ public class Statistiques {
         linechart.getData().add(series);
     }
 
+    /**
+     * Sert a creer un diagramme circulaire qui montre comment sont répartis les seismes en fonction des regions.
+     * @param pieChart PieChart défini dans le FXML
+     * @param donnees liste de Seisme qui peut etre triee
+     */
     public static void classementRegionsSysmiques(PieChart pieChart, List<Seisme> donnees){
         pieChart.getData().clear();
         // Tri de la liste en fonction de la date
