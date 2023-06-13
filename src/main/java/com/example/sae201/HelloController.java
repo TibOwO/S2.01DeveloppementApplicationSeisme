@@ -29,11 +29,13 @@ public class HelloController {
     @FXML
     private TextField date;
 
-    @FXML
-    private GridPane graphiques;
 
     @FXML
     private HBox carte;
+
+    // Pour les graphiques
+    @FXML
+    private GridPane graphiques;
 
     @FXML
     private LineChart nbSeismeParAn;
@@ -52,6 +54,15 @@ public class HelloController {
 
     @FXML
     private NumberAxis nbSeismeParIntensiteAxeY;
+
+    @FXML
+    private LineChart moyIntensiteParAn;
+
+    @FXML
+    private NumberAxis moyIntensiteParAnAxeX;
+
+    @FXML
+    private NumberAxis moyIntensiteParAnAxeY;
 
     @FXML
     protected void handleCarte(){
@@ -83,6 +94,7 @@ public class HelloController {
         tableView.setItems(FXCollections.observableArrayList(tri));
         Statistiques.nbSeismesParAn(nbSeismeParAn, nbSeismeParAnAxeX, nbSeismeParAnAxeY, tri);
         Statistiques.nbSeismesParIntensite(nbSeismeParIntensite, nbSeismeParIntensiteAxeX, nbSeismeParIntensiteAxeY, tri);
+        Statistiques.moyIntensiteParAn(moyIntensiteParAn, moyIntensiteParAnAxeX, moyIntensiteParAnAxeY, tri);
     }
 
     public static List<Seisme> filtrerParIntensiteEpicentrale(List<Seisme> liste, String aGarder) {

@@ -119,6 +119,14 @@
                     <NumberAxis fx:id="nbSeismeParIntensiteAxeY" label="Nombre de seismes"/>
                 </yAxis>
             </LineChart>
+            <LineChart fx:id="moyIntensiteParAn" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <xAxis>
+                    <NumberAxis fx:id="moyIntensiteParAnAxeX" side="BOTTOM" label="Annee" autoRanging="false"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="moyIntensiteParAnAxeY" label="Moyenne de l'intensite des seismes"/>
+                </yAxis>
+            </LineChart>
 
         </GridPane>
         <HBox fx:id="carte">
